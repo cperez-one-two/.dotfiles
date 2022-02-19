@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# apps
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x picom > /dev/null || picom &
+unclutter -b --timeout 3 &
+
+# monitors
+if xrandr | grep "HDMI-2 connected" ; then
+    xrandr --output 'eDP-1' --off --output 'HDMI-2' --mode 2560x1080
+else
+    xrandr --output 'eDP-1' --auto
+fi
+
+# launch after xrandr finishes
+feh --bg-center "$HOME/.local/share/bg" &
+$XDG_CONFIG_HOME/polybar/launch.sh &

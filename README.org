@@ -1,0 +1,3 @@
+* My Dotfiles Repo, Version 2
+
+This is currently a work-in-progress. My first version has held me over for a while, but it's time to start over with a clean implementation of GNU ~stow~.
