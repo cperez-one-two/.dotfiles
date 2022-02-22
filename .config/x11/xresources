@@ -1,0 +1,151 @@
+! hard contrast: *background: #1d2021
+!*background: #282828
+!*background: #2e3440
+! soft contrast: *background: #32302f
+! Solarized Dark
+!*foreground: #ebdbb2
+! Onedark
+!*foreground: #abb2bf
+! Nord
+!*foreground: #d8dee9
+!*background: #2e3440
+! Tomorrow Dark
+!*foreground: #c5c8c6
+!*background: #1d1f21
+! Black + DarkGrey
+!*color0:  #282828
+!*color8:  #928374
+! DarkRed + Red
+!*color1:  #cc241d
+!*color9:  #fb4934
+! DarkGreen + Green
+!*color2:  #98971a
+!*color10: #b8bb26
+! DarkYellow + Yellow
+!*color3:  #d79921
+!*color11: #fabd2f
+! DarkBlue + Blue
+!*color4:  #458588
+!*color12: #83a598
+! DarkMagenta + Magenta
+!*color5:  #b16286
+!*color13: #d3869b
+! DarkCyan + Cyan
+!*color6:  #689d6a
+!*color14: #8ec07c
+! LightGrey + White
+!*color7:  #a89984
+!*color15: #ebdbb2
+! Twilight Dark
+! special
+! *.foreground:   #a7a7a7
+! *.background:   #000000
+! *.cursorColor:  #a7a7a7
+
+! ! black
+! *.color0:       #1e1e1e
+! *.color8:       #5f5a60
+
+! ! red
+! *.color1:       #cf6a4c
+! *.color9:       #cf6a4c
+
+! ! green
+! *.color2:       #8f9d6a
+! *.color10:      #8f9d6a
+
+! ! yellow
+! *.color3:       #f9ee98
+! *.color11:      #f9ee98
+
+! ! blue
+! *.color4:       #7587a6
+! *.color12:      #7587a6
+
+! ! magenta
+! *.color5:       #9b859d
+! *.color13:      #9b859d
+
+! ! cyan
+! *.color6:       #afc4db
+! *.color14:      #afc4db
+
+! ! white
+! *.color7:       #a7a7a7
+! *.color15:      #ffffff
+
+!! palenight
+! special
+!*.foreground:	  #d0d0d0
+!*.background: 	  #292d3e
+
+!! black
+! *.color0:       #292d3e
+! *.color8:       #434758
+
+! red
+!*.color1:       #f07178
+!*.color9:       #ff8b92
+
+! green
+!*.color2:       #c3e88d
+!*.color10:      #ddffa7
+
+! yellow
+!*.color3:       #ffcb6b
+!*.color11:      #ffe585
+
+! blue
+!*.color4:       #82aaff
+!*.color12:      #9cc4ff
+
+! magenta
+!*.color5:       #c792ea
+!*.color13:      #e1acff
+
+! cyan
+!*.color6:       #89ddff
+!*.color14:      #a3f7ff
+
+! white
+!*.color7:       #d0d0d0
+!*.color15:      #ffffff
+! special
+
+!! modus-vivendi
+! special
+*.foreground:   #ffffff
+*.background:   #000000
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #1e1e1e
+*.color8:       #595959
+
+! red
+*.color1:       #ff8059
+*.color9:       #ef8b50
+
+! green
+*.color2:       #44bc44
+*.color10:      #70b900
+
+! yellow
+*.color3:       #d0bc00
+*.color11:      #c0c530
+
+! blue
+*.color4:       #2fafff
+*.color12:      #79a8ff
+
+! magenta
+*.color5:       #feacd0
+*.color13:      #f78fe7
+
+! cyan
+*.color6:       #00d3d0
+*.color14:      #4ae2f0
+
+! white
+*.color7:       #a8a8a8
+*.color15:      #e0e6f0

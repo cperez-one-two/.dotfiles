@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# X settings
+xset s off
+xset dpms 0 0 0
+xsetroot -cursor_name left_ptr &
+
+# apps
+#remaps & # Remap keys script, uses xinputd
+dunst &
+nm-applet &
+blueman-applet &
+wmname LG3D
+keepassxc &
+megasync &
+
+startup

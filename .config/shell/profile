@@ -1,0 +1,40 @@
+#!/bin/sh
+# Profile. Environment variables go here.
+
+# Default programs
+export EDITOR="nvim"
+if [ $(hostname) = "meep" ]; then
+    export TERMINAL="termite"
+else
+    export TERMINAL="alacritty"
+fi
+export BROWSER="brave"
+
+# $PATH variables
+# ~/.local/bin
+export PATH="$PATH:$HOME/.local/bin"
+# ~/.emacs.d/bin
+export PATH="$PATH:$HOME/.emacs.d/bin"
+# fnm
+export PATH=/home/uhoh/.local/bin/fnm:$PATH
+
+# TERM
+#export TERM="xterm-256color"
+
+# ~/ cleanup
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export LESSHISTFILE="-"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export CWMRC="${XDG_CONFIG_HOME:-$HOME/.config}/cwm/.cwmrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export SCROTS="$HOME/pics/scrots"
+
+# Qt applications styling
+export QT_STYLE_OVERRIDE=kvantum
+
+# Source nix profile
+[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && source $HOME/.nix-profile/etc/profile.d/nix.sh

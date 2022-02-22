@@ -1,0 +1,46 @@
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="ssh-agent startx $XINITRC"
+
+# run sudo without typing it for these programs
+for x in pacman mount umount tlp-stat systemctl journalctl; do
+  alias $x="sudo $x"
+done
+
+# Colorize commands when possible.
+alias \
+  cp="cp -iv" \
+  mv="mv -iv" \
+  rm="rm -vI" \
+  mkd="mkdir -pv" \
+  ls="ls -hN --color=auto --group-directories-first" \
+  lsd="lsd -h --color auto --group-dirs first" \
+  grep="grep --color=auto" \
+  diff="diff --color=auto" \
+  ccat="highlight --out-format=ansi"
+
+# Common commands
+alias \
+  ka="killall" \
+  shutdown="shutdown -h now" \
+  la="lsd -A" \
+  lla="lsd -Al" \
+  lt="lsd --tree" \
+  pfetch="PF_ASCII='gnu' PF_INFO='ascii title os host kernel uptime pkgs memory palette' pfetch" \
+  wp="sxiv ~/pics/wallpapers" \
+  mkdir="mkdir -p" \
+  scr="scrot '%Y-%m-%d-%M_%X.png' -e 'mv \$f \$\$SCROTS'" \
+  scrs="scrot '%Y-%m-%d-%M_%X.png' -e 'mv \$f \$\$SCROTS' -s" \
+  za="zathura" \
+  v="$EDITOR" \
+  iv="sxiv" \
+  nf="neofetch"
+  #pbcopy='xclip -selection clipboard' \
+  #pbpaste='xclip -selection clipboard -o'
+
+# Directory Shortcuts
+alias \
+  home="$HOME" \
+  dl="$HOME/Downloads" \
+  proj="$HOME/projects" \
+  pics="$HOME/pics" \
+  conf="$HOME/.config"
