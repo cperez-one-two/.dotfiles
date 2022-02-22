@@ -2,4 +2,5 @@ etc/
 var/
 elpa/
 packages/
+transient/
 projectile-bookmarks.eld

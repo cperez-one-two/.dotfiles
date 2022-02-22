@@ -4,3 +4,9 @@
 [submodule "chemacs2"]
 	path = .emacs.d
 	url = git@github.com:plexus/chemacs2.git
+[submodule ".config/zsh/plugins/fast-syntax-highlighting"]
+	path = .config/zsh/plugins/fast-syntax-highlighting
+	url = git@github.com:zdharma/fast-syntax-highlighting.git
+[submodule ".config/zsh/plugins/zsh-z"]
+	path = .config/zsh/plugins/zsh-z
+	url = git@github.com:agkozak/zsh-z.git
