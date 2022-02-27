@@ -75,7 +75,6 @@ Setting the fonts default size. Different settings for macOS and GNU/Linux. Sett
 
 #+end_src
 
-
 * Package Management
 
 Initialize the package repos. Refresh package contents if archive is nil.
@@ -613,5 +612,48 @@ Enables the <[shortcut]TAB shortcut
         (org-babel-tangle))))
 
   (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+
+#+end_src
+
+** Org Roam
+
+~org-roam~ enables a [[https://zettelkasten.de/introduction/][Zettlekasten]] style of note-taking by linking related notes to one another to connect thoughts, ideas, and findings.
+
+#+begin_src emacs-lisp
+
+  (use-package org-roam
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (org-roam-directory "~/roam")
+    (org-roam-completion-everywhere t)
+    (setq org-roam-dailies-directory "daily/")
+    (org-roam-dailies-capture-templates
+     (let ((head
+            (concat "#+title: %<%Y-%m-%d>\n"
+                    "* What Happened Today\n\n")))
+           '(("d" "default" entry "* %<%I:%M %p>: %?"
+              :if-new (file+head+olp "%<%Y-%m-%d>.org" ,head ("What Happened Today"))))))
+    :bind (("C-c n r" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)
+           :map org-mode-map
+           ("C-M-i"    . completion-at-point)
+           :map org-roam-dailies-map
+           ("y" . org-roam-dailies-goto-yesterday)
+           ("Y" . org-roam-dailies-capture-yesterday)         
+           ("t" . org-roam-dailies-goto-today)
+           ("T" . org-roam-dailies-capture-today)         
+           ("m" . org-roam-dailies-goto-tomorrow)
+           ("M" . org-roam-dailies-capture-tomorrow)         
+           ("d" . org-roam-dailies-goto-date)
+           ("D" . org-roam-dailies-capture-date)         
+           ("f" . org-roam-dailies-goto-next-note)
+           ("b" . org-roam-dailies-goto-previous-note))
+    :bind-keymap
+    ("C-c n d" . org-roam-dailies-map)
+    :config
+    (require 'org-roam-dailies) ;; Ensure the keymap is available
+    (org-roam-db-autosync-mode))
 
 #+end_src

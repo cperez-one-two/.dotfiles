@@ -354,3 +354,38 @@
       (org-babel-tangle))))
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+
+(use-package org-roam
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/roam")
+  (org-roam-completion-everywhere t)
+  (setq org-roam-dailies-directory "daily/")
+  (org-roam-dailies-capture-templates
+   (let ((head
+          (concat "#+title: %<%Y-%m-%d>\n"
+                  "* What Happened Today\n\n")))
+         '(("d" "default" entry "* %<%I:%M %p>: %?"
+            :if-new (file+head+olp "%<%Y-%m-%d>.org" ,head ("What Happened Today"))))))
+  :bind (("C-c n r" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n i" . org-roam-node-insert)
+         :map org-mode-map
+         ("C-M-i"    . completion-at-point)
+         :map org-roam-dailies-map
+         ("y" . org-roam-dailies-goto-yesterday)
+         ("Y" . org-roam-dailies-capture-yesterday)         
+         ("t" . org-roam-dailies-goto-today)
+         ("T" . org-roam-dailies-capture-today)         
+         ("m" . org-roam-dailies-goto-tomorrow)
+         ("M" . org-roam-dailies-capture-tomorrow)         
+         ("d" . org-roam-dailies-goto-date)
+         ("D" . org-roam-dailies-capture-date)         
+         ("f" . org-roam-dailies-goto-next-note)
+         ("b" . org-roam-dailies-goto-previous-note))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
+  (org-roam-db-autosync-mode))

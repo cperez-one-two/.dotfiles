@@ -46,3 +46,7 @@ flycheck_*.el
 
 # network security
 /network-security.data
+/.emacs.efs/org-roam.db
+/.emacs.efs/bookmarks
+/.emacs.efs/eshell/
+/.emacs.efs/transient/
