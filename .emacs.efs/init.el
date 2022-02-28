@@ -359,7 +359,7 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory "~/roam")
+  (org-roam-directory "~/Sync/roam")
   (org-roam-completion-everywhere t)
   (setq org-roam-dailies-directory "daily/")
   (org-roam-dailies-capture-templates
