@@ -72,7 +72,7 @@ eval "`fnm env`"
 
 
 # direnv
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 # Plugins
 # zsh-fast-syntax-highlighting
