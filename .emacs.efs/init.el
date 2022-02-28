@@ -289,9 +289,10 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-agenda-files
-        '("~/dotfiles/emacs/hello.org"
-          "~/dotfiles/emacs/birthdays.org")))
+  ;; (setq org-agenda-files
+  ;;       '("~/dotfiles/emacs/hello.org"
+  ;;         "~/dotfiles/emacs/birthdays.org"))
+  )
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
@@ -363,25 +364,30 @@
   (org-roam-completion-everywhere t)
   (setq org-roam-dailies-directory "daily/")
   (org-roam-dailies-capture-templates
-   (let ((head
-          (concat "#+title: %<%Y-%m-%d>\n"
-                  "* What Happened Today\n\n")))
-         '(("d" "default" entry "* %<%I:%M %p>: %?"
-            :if-new (file+head+olp "%<%Y-%m-%d>.org" ,head ("What Happened Today"))))))
+   '(("d" "default" entry "* %?"
+      :if-new
+      (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("What Happened Today"))
+      :unnarrowed t
+      :empty-lines 1)
+     ("j" "journal" entry "* %<%I:%M %p>: %?"
+      :if-new
+      (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Log"))
+      :unnarrowed t
+      :empty-lines 1)))
   :bind (("C-c n r" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          :map org-mode-map
          ("C-M-i"    . completion-at-point)
          :map org-roam-dailies-map
-         ("y" . org-roam-dailies-goto-yesterday)
-         ("Y" . org-roam-dailies-capture-yesterday)         
-         ("t" . org-roam-dailies-goto-today)
-         ("T" . org-roam-dailies-capture-today)         
-         ("m" . org-roam-dailies-goto-tomorrow)
-         ("M" . org-roam-dailies-capture-tomorrow)         
-         ("d" . org-roam-dailies-goto-date)
-         ("D" . org-roam-dailies-capture-date)         
+         ("Y" . org-roam-dailies-goto-yesterday)
+         ("y" . org-roam-dailies-capture-yesterday)         
+         ("T" . org-roam-dailies-goto-today)
+         ("t" . org-roam-dailies-capture-today)         
+         ("M" . org-roam-dailies-goto-tomorrow)
+         ("m" . org-roam-dailies-capture-tomorrow)         
+         ("D" . org-roam-dailies-goto-date)
+         ("d" . org-roam-dailies-capture-date)         
          ("f" . org-roam-dailies-goto-next-note)
          ("b" . org-roam-dailies-goto-previous-note))
   :bind-keymap
