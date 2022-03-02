@@ -2,7 +2,7 @@
 
 if xrandr | grep "LVDS1 connected" ; then
    if xrandr | grep "HDMI2 connected" ; then
-      xrandr --output 'LVDS1' --auto --output 'HDMI2' --mode 2560x1080
+     ultrawide-mode.sh
    else
       xrandr --output 'LVDS1' --auto
    fi
