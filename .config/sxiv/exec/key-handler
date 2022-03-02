@@ -4,18 +4,18 @@ while read file
 do
 	case "$1" in
 	"C-w")
-		ln -sf "$file" "$HOME/.local/share/bg" &&
-		feh --bg-fill --no-xinerama "$HOME/.local/share/bg"
+		cp -f "$file" "$HOME/.local/share/background/bg.png" &&
+		feh --bg-fill --no-xinerama "$HOME/.local/share/background/bg.png"
 		notify-send -i "$file" "Changing wallpaper (filled)..."
 		;;
 	"C-s")
-		ln -sf "$file" "$HOME/.local/share/bg" &&
-		feh --bg-scale --no-xinerama "$HOME/.local/share/bg"
+		cp -f "$file" "$HOME/.local/share/background/bg.png" &&
+		feh --bg-scale --no-xinerama "$HOME/.local/share/background/bg.png"
 		notify-send -i "$file" "Changing wallpaper (scaled)..."
 		;;
 	"C-c")
-		ln -sf "$file" "$HOME/.local/share/bg" &&
-		feh --bg-center "$HOME/.local/share/bg"
+		cp -f "$file" "$HOME/.local/share/background/bg.png" &&
+		feh --bg-center "$HOME/.local/share/background/bg.png"
 		notify-send -i "$file" "Changing wallpaper (centered)..."
 		;;
 	"C-t")
