@@ -18,5 +18,6 @@ fi
 
 # wm
 #exec bspwm 2> $HOME/.cache/bspwm/log
-cwm -c $CWMRC
+#cwm -c $CWMRC
+exec icewm-session 2> $HOME/.cache/icewm/log
 

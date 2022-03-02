@@ -1,0 +1,540 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+; from xresources
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:color8}
+background = ${xrdb:background}
+;background = #000000
+background-alt = ${xrdb:background}
+primary = ${xrdb:color4}
+secondary = ${xrdb:color2}
+alert = ${xrdb:color1}
+black = ${xrdb:color0}
+red = ${xrdb:color1}
+green = ${xrdb:color2}
+yellow = ${xrdb:color3}
+blue = ${xrdb:color4}
+magenta = ${xrdb:color5}
+cyan = ${xrdb:color6}
+white = ${xrdb:color15}
+
+[bar/example]
+monitor = ${env:MONITOR:eDP-1}
+tray-position = ${env:TRAY_POSITION:right}
+;monitor = eDP-1
+;tray-position = right
+;tray-padding = 2
+tray-background = ${colors:background}
+width = 100%
+height = 30
+;offset-x = 5%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #268bd2
+
+padding-left = 1
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = TerminessTTF Nerd Font:style=Medium:pixelsize=14;
+;font-0 = UbuntuMono Nerd Font:style=Regular:pixelsize=14;
+font-1 = Noto Color Emoji:style=Regular:scale=10;
+font-2 = Noto Sans Symbols2:style=Regular:pixelsize=11;
+
+modules-left = bspwm title
+;modules-center =
+modules-right = ticker-crypto pulseaudio filesystem cpu memory battery battery-1 temperature date powermenu
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/cwmbar]
+monitor = ${env:MONITOR:eDP-1}
+tray-position = ${env:TRAY_POSITION:right}
+;monitor = eDP-1
+;tray-position = right
+;tray-padding = 2
+tray-background = ${colors:background}
+width = 100%
+height = 30
+;offset-x = 5%
+;offset-y = 1%
+radius = 0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #268bd2
+
+padding-left = 1
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+separator = |
+separator-foreground = ${colors.black}
+
+font-0 = Iosevka Nerd Font:style=Medium:pixelsize=12;
+;font-0 = UbuntuMono Nerd Font:style=Regular:pixelsize=14;
+font-1 = Noto Color Emoji:style=Regular:scale=10;
+font-2 = Noto Sans Symbols2:style=Regular:pixelsize=11;
+
+modules-left = ewmh title
+modules-center = date
+modules-right = ticker-crypto pulseaudio filesystem cpu memory battery battery-1 temperature
+cursor-click = pointer
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+format-mounted-prefix = "DISK "
+;format-mounted-prefix = " "
+format-mounted-prefix-foreground = ${colors.foreground-alt}
+label-mounted = %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+format-unmounted-foreground = ${colors.background-alt}
+
+format-mounted = <label-mounted>
+format-unmounted = <label-unmounted>
+
+;; TODO :: Fix
+[module/bspwm]
+type = internal/bspwm
+enable-scroll = false
+
+;ws-icon-0 = X;x
+;ws-icon-1 = I;ⅰ
+;ws-icon-2 = II;ii
+;ws-icon-3 = III;iii
+;ws-icon-4 = IV;iv
+;ws-icon-5 = V;v
+;ws-icon-6 = VI;vi
+;ws-icon-7 = VII;vii
+;ws-icon-8 = VIII;viii
+;ws-icon-9 = IX;ix
+
+label-occupied = 綠
+label-occupied-foreground = ${colors.foreground-alt}
+label-occupied-padding = 1
+
+label-empty = 祿
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
+
+; focused = Active workspace on focused monitor
+label-focused = 綠
+label-focused-foreground = ${colors.white}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = 祿
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = 綠
+label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.foreground-alt}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = 綠
+;label-urgent = %icon%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+[module/ewmh]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-scroll = false
+enable-click = true
+
+icon-0 = nogroup;0
+icon-1 = one;1
+icon-2 = two;2
+icon-3 = three;3
+icon-4 = four;4
+icon-5 = five;5
+icon-6 = six;6
+icon-7 = seven;7
+icon-8 = eight;8
+icon-9 = nine;9
+format = <label-state>
+label-monitor = %name%
+
+label-active = %icon%
+label-active-foreground = ${colors.background}
+label-active-background = ${colors.foreground}
+;label-active-underline= #6790eb
+label-active-padding = 1
+
+label-occupied = %icon%
+label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding = 1
+
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background = {colors.background}
+format-foreground = {colors.foreground}
+format-padding = 2
+
+label = %title%
+label-maxlen = 50
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty = empty
+label-empty-foreground = ${colors.foreground-alt}
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+tail = true
+
+icon-prev = "玲"
+icon-stop = "栗"
+icon-play = "契"
+icon-pause = ""
+icon-next = "怜"
+
+label-song = %title%
+label-song-maxlen = 12
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+; Spacing between individual per-core ramps
+;ramp-coreload-spacing = 1
+ramp-load-0 = ""
+ramp-load-0-foreground = ${colors.foreground}
+ramp-load-1 = ""
+ramp-load-1-foreground = ${colors.foreground}
+ramp-load-2 = ""
+ramp-load-2-foreground = ${colors.foreground}
+ramp-load-3 = ""
+ramp-load-3-foreground = ${colors.foreground}
+ramp-load-4 = ""
+ramp-load-4-foreground = ${colors.foreground}
+ramp-load-5 = ""
+ramp-load-5-foreground = ${colors.yellow}
+ramp-load-6 = ""
+ramp-load-6-foreground = ${colors.red}
+ramp-load-7 = ""
+ramp-load-7-foreground = ${colors.red}
+
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage:2%%
+;format = <ramp-load> <label>
+format = <label>
+
+[module/memory]
+type = internal/memory
+interval = 0.5
+format-prefix = "RAM "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+;[module/wlan]
+;type = internal/network
+;interface = wls1
+;interval = 3.0
+;
+;format-connected = <ramp-signal> <label-connected>
+;format-connected-underline = #9f78e1
+;label-connected = %essid%
+;
+;format-disconnected =
+;;format-disconnected = <label-disconnected>
+;;format-disconnected-underline = ${self.format-connected-underline}
+;;label-disconnected = %ifname% disconnected
+;;label-disconnected-foreground = ${colors.foreground}
+;
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+;ramp-signal-foreground = ${colors.foreground}
+;
+;[module/eth]
+;type = internal/network
+;interface = enp0s25
+;interval = 3.0
+;
+;format-connected-underline = #55aa55
+;format-connected-prefix = " "
+;format-connected-prefix-foreground = ${colors.foreground}
+;label-connected = %local_ip%
+;
+;format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%a %b %d"
+;date = "%s"
+date-alt = " %Y-%m-%d"
+
+time = "%d %b, %I:%M %p"
+time-alt = %H:%M:%S
+
+;format-prefix = "📆"
+;format-prefix-foreground = ${colors.foreground}
+;format-underline = #0a6cf5
+
+label = %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+label-muted = "婢 muted"
+label-muted-foreground = ${colors.foreground-alt}
+
+; ramp-volume-0 = 奔
+; ramp-volume-1 = 墳
+; ramp-volume-2 = 
+ramp-volume-0 = VOL
+ramp-volume-1 = VOL
+ramp-volume-2 = VOL
+
+ramp-volume-foreground = ${colors.foreground-alt}
+
+label-volume = "%percentage%%"
+format-volume = <ramp-volume> <label-volume>
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-full-prefix = "FULL "
+;format-full-prefix = " "
+
+; ramp-capacity-4 = ""
+; ramp-capacity-4-foreground = ${colors.green}
+; ramp-capacity-3 = ""
+; ramp-capacity-3-foreground = ${colors.green}
+; ramp-capacity-2 = ""
+; ramp-capacity-2-foreground = ${colors.green}
+; ramp-capacity-1 = ""
+; ramp-capacity-1-foreground = ${colors.yellow}
+; ramp-capacity-0 = ""
+; ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-4 = "BAT0"
+ramp-capacity-4-foreground = ${colors.green}
+ramp-capacity-3 = "BAT0"
+ramp-capacity-3-foreground = ${colors.green}
+ramp-capacity-2 = "BAT0"
+ramp-capacity-2-foreground = ${colors.green}
+ramp-capacity-1 = "BAT0"
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-0 = "BAT0"
+ramp-capacity-0-foreground = ${colors.red}
+
+; animation-charging-4 = 
+; animation-charging-3 = 
+; animation-charging-2 = 
+; animation-charging-1 = 
+; animation-charging-0 = 
+animation-charging-0 = CHG
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+;format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging>  <label-charging>
+;format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+[module/battery-1]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 98
+
+format-full-prefix = "FULL "
+;format-full-prefix = " "
+
+; ramp-capacity-4 = ""
+; ramp-capacity-4-foreground = ${colors.green}
+; ramp-capacity-3 = ""
+; ramp-capacity-3-foreground = ${colors.green}
+; ramp-capacity-2 = ""
+; ramp-capacity-2-foreground = ${colors.green}
+; ramp-capacity-1 = ""
+; ramp-capacity-1-foreground = ${colors.yellow}
+; ramp-capacity-0 = ""
+; ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-4 = "BAT1"
+ramp-capacity-4-foreground = ${colors.green}
+ramp-capacity-3 = "BAT1"
+ramp-capacity-3-foreground = ${colors.green}
+ramp-capacity-2 = "BAT1"
+ramp-capacity-2-foreground = ${colors.green}
+ramp-capacity-1 = "BAT1"
+ramp-capacity-1-foreground = ${colors.yellow}
+ramp-capacity-0 = "BAT1"
+ramp-capacity-0-foreground = ${colors.red}
+
+; animation-charging-4 = 
+; animation-charging-3 = 
+; animation-charging-2 = 
+; animation-charging-1 = 
+; animation-charging-0 = 
+animation-charging-0 = CHG
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+;format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging>  <label-charging>
+;format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 130
+
+; ramp-0 = 
+; ramp-0-foreground = ${colors.cyan}
+; ramp-1 = 
+; ramp-1-foreground = ${colors.yellow}
+; ramp-2 = 
+; ramp-2-foreground = ${colors.red}
+ramp-0 = DEG
+ramp-0-foreground = ${colors.foreground-alt}
+ramp-1 = DEG
+ramp-1-foreground = ${colors.foreground-alt}
+ramp-2 = DEG
+ramp-2-foreground = ${colors.red}
+
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+label = %temperature-c%
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-close = ⏼
+label-open-foreground = ${colors.foreground}
+label-close-foreground = ${colors.foreground}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = "Reboot "
+menu-0-0-exec = menu-open-1
+menu-0-1 = "Shutdown"
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = "Reboot? Yes "
+menu-1-0-exec = reboot
+menu-1-1 = "No"
+menu-1-1-exec = menu-open-0
+
+menu-2-0 = "Shutdown? Yes "
+menu-2-0-exec = shutdown -h now
+menu-2-1 = "No"
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; Custom modules
+[module/ticker-crypto]
+type = custom/script
+exec = ~/.config/polybar/polybar-scripts/ticker-crypto.sh
+interval = 600
+;format-prefix = "ﴑ "
+format-prefix = "BTC "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %output%
+format = <label>

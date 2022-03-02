@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# start network manager
+sleep 1 &&
+nm-applet &
+
+# enable bluetooth applet
+sleep 1 &&
+blueman-applet &!
+
+# notifications
+sleep 1 &&
+dunst &
+    
+# apps
+keepassxc &
+  
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x picom > /dev/null || picom &
+sleep 1 &&
+unclutter -b --timeout 3 &
+
+# monitor setup
+get-monitors &&
+
+# launch after xrandr finishes
+feh --bg-center "$HOME/.local/share/background/bg.png" &
