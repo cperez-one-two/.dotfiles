@@ -50,3 +50,6 @@ flycheck_*.el
 /.emacs.efs/bookmarks
 /.emacs.efs/eshell/
 /.emacs.efs/transient/
+/.emacs.efs/.cache/
+/.emacs.efs/.lsp-session-v1
+/.local/share/.DS_Store

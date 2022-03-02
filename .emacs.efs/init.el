@@ -235,6 +235,11 @@
   :config
   (company-prescient-mode 1))
 
+(unless (eq system-type 'gnu/linux)
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize)))
+
 (use-package vterm
   :commands vterm
   :config
@@ -289,10 +294,9 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  ;; (setq org-agenda-files
-  ;;       '("~/dotfiles/emacs/hello.org"
-  ;;         "~/dotfiles/emacs/birthdays.org"))
-  )
+  (setq org-agenda-files
+        '("~/Sync/roam/20220223193635-current_todo_s.org"
+          "~/Sync/roam/20220228153956-birthdays.org")))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
@@ -362,6 +366,33 @@
   :custom
   (org-roam-directory "~/Sync/roam")
   (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+        '(("d" "default" plain
+         "%?"
+         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                            "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ("t" "ticket" plain
+         (file "~/Sync/roam/templates/TicketTemplate.org")
+         :if-new
+         (file+head "tickets/${ticketid}.org" "#+title: ${title}\n#+category: ${ticketid}\n#+filetags: Ticket")
+         :unnarrowed t)
+        ("p" "project" plain
+         (file "~/Sync/roam/templates/ProjectTemplate.org")
+         :if-new
+         (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+         :unnarrowed t)
+        ("r" "translate request" plain
+         (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
+         :if-new
+         (file+head "translate-requests/${ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
+         :unnarrowed t)
+        ("h" "href" plain
+         (file "~/Sync/roam/templates/HrefTemplate.org")
+         :if-new
+         (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: href")
+         :unnarrowed t)))
   (setq org-roam-dailies-directory "daily/")
   (org-roam-dailies-capture-templates
    '(("d" "default" entry "* %?"
