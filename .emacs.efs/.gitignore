@@ -2,7 +2,6 @@ etc/
 var/
 elpa/
 packages/
-transient/
 projectile-bookmarks.eld
-transient/
 /.emacs.efs/org-roam.db
+/.emacs.efs/transient/history.el
