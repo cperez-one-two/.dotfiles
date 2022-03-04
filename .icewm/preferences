@@ -1273,7 +1273,7 @@ WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
 # ListBoxFontNameXft="DejaVu Sans:size=12"
 
 #  The theme look.
-# Look="nice"
+Look="motif"
 
 #  Vertical offset for the menu button icon.
 # MenuButtonIconVertOffset=0 # [-128-128]
@@ -1455,4 +1455,3 @@ WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
 
 #  Support for semitransparent terminals like Eterm or gnome-terminal.
 # SupportSemitransparency=1 # 0/1
-

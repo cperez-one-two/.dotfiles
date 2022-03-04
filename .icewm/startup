@@ -11,17 +11,17 @@ blueman-applet &!
 # notifications
 sleep 1 &&
 dunst &
-    
+
 # apps
-keepassxc &
-  
+#keepassxc &
+
 pgrep -x sxhkd > /dev/null || sxhkd &
-pgrep -x picom > /dev/null || picom &
-sleep 1 &&
-unclutter -b --timeout 3 &
+#pgrep -x picom > /dev/null || picom &
+#sleep 1 &&
+#unclutter -b --timeout 3 &
 
 # monitor setup
-get-monitors &&
+#get-monitors &&
 
 # launch after xrandr finishes
 feh --bg-center "$HOME/.local/share/background/bg.png" &
