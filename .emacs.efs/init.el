@@ -290,7 +290,7 @@
 
 (defun efs/org-mode-setup ()
   (org-indent-mode)
-  ;(variable-pitch-mode 1)
+  ;;(variable-pitch-mode 1)
   (visual-line-mode 1))
 
 (use-package org
@@ -303,7 +303,50 @@
   (setq org-log-into-drawer t)
   (setq org-agenda-files
         '("~/Sync/roam/20220223193635-current_todo_s.org"
-          "~/Sync/roam/20220228153956-birthdays.org")))
+          "~/Sync/roam/20220228153956-birthdays.org"))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "|" "DONE(d!)")
+          (sequence "|" "BACK(b)")))
+  (setq org-todo-keyword-faces
+        '(("NEXT" . (:foreground "orange red" :weight bold))
+          ("WAIT" . (:foreground "HotPink2" :weight bold))
+          ("BACK" . (:foreground "MediumPurple3" :weight bold))))
+
+  (setq org-tag-alist
+        '((:startgroup)
+          (:endgroup)
+          ("@home" . ?H)
+          ("@work" . ?W)
+          ("batch" . ?b)))
+  (setq org-columns-default-format "%20CATEGORY(Category) %65ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS")
+
+  (setq org-agenda-custom-commands
+        `(("d" "Dashboard"
+           ((agenda "" ((org-deadline-warning-days 7)))
+            (tags-todo "+PRIORITY=\"A\""
+                       ((org-agenda-overriding-header "High Priority")))
+            (tags-todo "+batch" ((org-agenda-overriding-header "Batchable Small Tasks")))
+            (todo "NEXT"
+                  ((org-agenda-overriding-header "Next Actions")
+                   (org-agenda-max-todos nil)))
+            (todo "TODO"
+                  ((org-agenda-overriding-header "Unprocessed Inbox Tasks")
+                   (org-agenda-files org-agenda-files))
+                  (org-agenda-text-search-extra-files nil))
+            (todo "WAIT"
+                  ((org-agenda-overriding-header "Waiting On External")
+                   (org-agenda-files org-agenda-files))
+                  (org-agenda-text-search-extra-files nil))))
+          ("n" "Next Tasks"
+           ((agenda "" ((org-deadline-warning-days 7)))
+            (todo "NEXT"
+                  ((org-agenda-overriding-header "Next Tasks")))))
+
+          ;; Low-effort next actions
+          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+           ((org-agenda-overriding-header "Low Effort Tasks")
+            (org-agenda-max-todos 20)
+            (org-agenda-files org-agenda-files))))))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
@@ -433,16 +476,3 @@
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-db-autosync-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(multiple-cursors which-key vterm visual-fill-column use-package typescript-mode rainbow-mode rainbow-delimiters org-roam org-bullets modus-themes magit lsp-ui lsp-ivy js2-mode ivy-rich ivy-prescient hydra helpful general exec-path-from-shell evil-nerd-commenter eshell-git-prompt doom-themes doom-modeline counsel-projectile company-prescient company-box)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
