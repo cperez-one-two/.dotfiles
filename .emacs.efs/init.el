@@ -164,6 +164,13 @@
 (efs/leader-key
   "ts"  '(hydra-text-scale/body :which-key "scale text"))
 
+(use-package multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C->" . mc/mark-all-like-this)
+         ("C-c C-SPC" . mc/edit-lines)
+         ))
+
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -426,3 +433,16 @@
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-db-autosync-mode))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(multiple-cursors which-key vterm visual-fill-column use-package typescript-mode rainbow-mode rainbow-delimiters org-roam org-bullets modus-themes magit lsp-ui lsp-ivy js2-mode ivy-rich ivy-prescient hydra helpful general exec-path-from-shell evil-nerd-commenter eshell-git-prompt doom-themes doom-modeline counsel-projectile company-prescient company-box)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

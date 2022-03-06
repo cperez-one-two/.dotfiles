@@ -53,3 +53,4 @@ flycheck_*.el
 /.emacs.efs/.cache/
 /.emacs.efs/.lsp-session-v1
 /.local/share/.DS_Store
+/.emacs.efs/.mc-lists.el
