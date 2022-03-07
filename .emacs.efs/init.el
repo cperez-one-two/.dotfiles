@@ -302,11 +302,10 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-agenda-files
-        '("~/Sync/roam/20220223193635-current_todo_s.org"
-          "~/Sync/roam/20220228153956-birthdays.org"))
+        '("~/Sync/roam/20220228153956-birthdays.org"))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAIT(w)" "|" "DONE(d!)")
-          (sequence "|" "BACK(b)")))
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "BACKLOG(b)" "|" "DONE(d!)")))
+
   (setq org-todo-keyword-faces
         '(("NEXT" . (:foreground "orange red" :weight bold))
           ("WAIT" . (:foreground "HotPink2" :weight bold))
@@ -321,30 +320,61 @@
   (setq org-columns-default-format "%20CATEGORY(Category) %65ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS")
 
   (setq org-agenda-custom-commands
-        `(("d" "Dashboard"
+        `(("d" "Work Dashboard"
            ((agenda "" ((org-deadline-warning-days 7)))
-            (tags-todo "+PRIORITY=\"A\""
+            (tags-todo "+PRIORITY=\"A\"+@work"
                        ((org-agenda-overriding-header "High Priority")))
-            (tags-todo "+batch" ((org-agenda-overriding-header "Batchable Small Tasks")))
-            (todo "NEXT"
-                  ((org-agenda-overriding-header "Next Actions")
-                   (org-agenda-max-todos nil)))
-            (todo "TODO"
-                  ((org-agenda-overriding-header "Unprocessed Inbox Tasks")
-                   (org-agenda-files org-agenda-files))
-                  (org-agenda-text-search-extra-files nil))
-            (todo "WAIT"
-                  ((org-agenda-overriding-header "Waiting On External")
-                   (org-agenda-files org-agenda-files))
-                  (org-agenda-text-search-extra-files nil))))
+            (tags-todo "+TODO=\"NEXT\"+@work"
+                       ((org-agenda-overriding-header "Next Actions")
+                        (org-agenda-max-todos nil)))
+            (tags-todo "+TODO=\"TODO\"+@work-batch"
+                       ((org-agenda-overriding-header "Active")
+                        (org-agenda-files org-agenda-files))
+                       (org-agenda-text-search-extra-files nil))
+            (tags-todo "+TODO=\"WAITING\"+@work"
+                       ((org-agenda-overriding-header "Waiting On External")
+                        (org-agenda-files org-agenda-files))
+                       (org-agenda-text-search-extra-files nil))
+            (tags-todo "+batch+@work" ((org-agenda-overriding-header "Batchable Small Tasks"))))
+           ((org-agenda-tag-filter-preset '("+@work"))))
           ("n" "Next Tasks"
            ((agenda "" ((org-deadline-warning-days 7)))
-            (todo "NEXT"
-                  ((org-agenda-overriding-header "Next Tasks")))))
+            (tags-todo "+TODO=\"NEXT\"+@work"
+                       ((org-agenda-overriding-header "Next Tasks")))))
 
           ;; Low-effort next actions
-          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-           ((org-agenda-overriding-header "Low Effort Tasks")
+          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@work"
+           ((org-agenda-overriding-header "Low Effort Work Tasks")
+            (org-agenda-max-todos 20)
+            (org-agenda-files org-agenda-files)))
+
+          ("h" "Home Dashboard"
+           ((agenda "" ((org-deadline-warning-days 7)
+                        ))
+            (tags-todo "+PRIORITY=\"A\"+@home"
+                       ((org-agenda-overriding-header "High Priority")))
+
+            (tags-todo "+TODO=\"NEXT\"+@home"
+                       ((org-agenda-overriding-header "Next Actions")
+                        (org-agenda-max-todos nil)))
+            (tags-todo "+TODO=\"TODO\"+@home-batch"
+                       ((org-agenda-overriding-header "Active")
+                        (org-agenda-files org-agenda-files))
+                       (org-agenda-text-search-extra-files nil))
+            (tags-todo "+TODO=\"WAITING\"+@home"
+                       ((org-agenda-overriding-header "Waiting On External")
+                        (org-agenda-files org-agenda-files))
+                       (org-agenda-text-search-extra-files nil))
+            (tags-todo "+batch+@home" ((org-agenda-overriding-header "Batchable Small Tasks"))))
+           ((org-agenda-tag-filter-preset '("+@home"))))
+          ("n" "Next Tasks"
+           ((agenda "" ((org-deadline-warning-days 7)))
+            (tags-todo "+TODO=\"NEXT\"+@home"
+                       ((org-agenda-overriding-header "Next Tasks")))))
+
+          ;; Low-effort next actions
+          ("f" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@home"
+           ((org-agenda-overriding-header "Low Effort Home Tasks")
             (org-agenda-max-todos 20)
             (org-agenda-files org-agenda-files))))))
 
@@ -417,32 +447,32 @@
   (org-roam-directory "~/Sync/roam")
   (org-roam-completion-everywhere t)
   (org-roam-capture-templates
-        '(("d" "default" plain
-         "%?"
-         :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                            "#+title: ${title}\n")
-         :immediate-finish t
-         :unnarrowed t)
-        ("t" "ticket" plain
-         (file "~/Sync/roam/templates/TicketTemplate.org")
-         :if-new
-         (file+head "tickets/${ticketid}.org" "#+title: ${title}\n#+category: ${ticketid}\n#+filetags: Ticket")
-         :unnarrowed t)
-        ("p" "project" plain
-         (file "~/Sync/roam/templates/ProjectTemplate.org")
-         :if-new
-         (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
-         :unnarrowed t)
-        ("r" "translate request" plain
-         (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
-         :if-new
-         (file+head "translate-requests/${ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
-         :unnarrowed t)
-        ("h" "href" plain
-         (file "~/Sync/roam/templates/HrefTemplate.org")
-         :if-new
-         (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: href")
-         :unnarrowed t)))
+   '(("d" "default" plain
+      "%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n")
+      :immediate-finish t
+      :unnarrowed t)
+     ("t" "ticket" plain
+      (file "~/Sync/roam/templates/TicketTemplate.org")
+      :if-new
+      (file+head "tickets/${ticketid}.org" "#+title: ${title}\n#+category: ${ticketid}\n#+filetags: Ticket")
+      :unnarrowed t)
+     ("p" "project" plain
+      (file "~/Sync/roam/templates/ProjectTemplate.org")
+      :if-new
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+      :unnarrowed t)
+     ("r" "translate request" plain
+      (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
+      :if-new
+      (file+head "translate-requests/${ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
+      :unnarrowed t)
+     ("h" "href" plain
+      (file "~/Sync/roam/templates/HrefTemplate.org")
+      :if-new
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: href")
+      :unnarrowed t)))
   (setq org-roam-dailies-directory "daily/")
   (org-roam-dailies-capture-templates
    '(("d" "default" entry "* %?"
@@ -475,4 +505,95 @@
   ("C-c n d" . org-roam-dailies-map)
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
-  (org-roam-db-autosync-mode))
+  (org-roam-db-autosync-mode)
+  (defun my/org-roam-copy-todo-to-today ()
+    (interactive)
+    (let ((org-refile-keep t) ;; Set this to nil to delete the original!
+          (org-roam-dailies-capture-templates
+           '(("t" "tasks" entry "%?"
+              :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Completed Tasks"))
+              :empty-lines 1)))
+          (org-after-refile-insert-hook #'save-buffer)
+          today-file
+          pos)
+      (save-window-excursion
+        (org-roam-dailies--capture (current-time) t)
+        (setq today-file (buffer-file-name))
+        (setq pos (point)))
+
+      ;; Only refile if the target file is different than the current file
+      (unless (equal (file-truename today-file)
+                     (file-truename (buffer-file-name)))
+        (org-refile nil nil (list "Tasks" today-file nil pos)))))
+
+  (add-to-list 'org-after-todo-state-change-hook
+               (lambda ()
+                 (when (equal org-state "DONE")
+                   (my/org-roam-copy-todo-to-today)))))
+
+(use-package vulpea
+  :after org-roam
+  :config
+  (defun vulpea-project-p ()
+    "Return non-nil if current buffer has any todo entry.
+
+TODO entries marked as done are ignored, meaning the this
+function returns nil if current buffer contains only completed
+tasks."
+    (seq-find                                 ; (3)
+     (lambda (type)
+       (eq type 'todo))
+     (org-element-map                         ; (2)
+         (org-element-parse-buffer 'headline) ; (1)
+         'headline
+       (lambda (h)
+         (org-element-property :todo-type h)))))
+
+  (defun vulpea-project-update-tag ()
+    "Update PROJECT tag in the current buffer."
+    (when (and (not (active-minibuffer-window))
+               (vulpea-buffer-p))
+      (save-excursion
+        (goto-char (point-min))
+        (let* ((tags (vulpea-buffer-tags-get))
+               (original-tags tags))
+          (if (vulpea-project-p)
+              (setq tags (cons "project" tags))
+            (setq tags (remove "project" tags)))
+
+          ;; cleanup duplicates
+          (setq tags (seq-uniq tags))
+
+          ;; update tags if changed
+          (when (or (seq-difference tags original-tags)
+                    (seq-difference original-tags tags))
+            (apply #'vulpea-buffer-tags-set tags))))))
+
+  (defun vulpea-buffer-p ()
+    "Return non-nil if the currently visited buffer is a note."
+    (and buffer-file-name
+         (string-prefix-p
+          (expand-file-name (file-name-as-directory org-roam-directory))
+          (file-name-directory buffer-file-name))))
+
+  (defun vulpea-project-files ()
+    "Return a list of note files containing 'project' tag." ;
+    (seq-uniq
+     (seq-map
+      #'car
+      (org-roam-db-query
+       [:select [nodes:file]
+                :from tags
+                :left-join nodes
+                :on (= tags:node-id nodes:id)
+                :where (like tag (quote "%\"project\"%"))]))))
+
+  (defun vulpea-agenda-files-update (&rest _)
+    "Update the value of `org-agenda-files'."
+    (setq org-agenda-files (vulpea-project-files)))
+
+  (add-hook 'find-file-hook #'vulpea-project-update-tag)
+  (add-hook 'before-save-hook #'vulpea-project-update-tag)
+
+  (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
+  (advice-add 'org-todo-list :before #'vulpea-agenda-files-update))
