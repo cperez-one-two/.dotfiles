@@ -1,0 +1,111 @@
+# chrisp's .cwmrc
+
+sticky yes
+snapdist 4
+moveamount 10
+unbind-key all
+
+fontname "Ubuntu:style=Regular:size=12"
+
+# groups
+bind-key 4-1 group-only-1
+bind-key 4-2 group-only-2
+bind-key 4-3 group-only-3
+bind-key 4-4 group-only-4
+bind-key 4-5 group-only-5
+bind-key 4-6 group-only-6
+bind-key 4-7 group-only-7
+bind-key 4-8 group-only-8
+bind-key 4-9 group-only-9
+bind-key 4S-1 window-movetogroup-1
+bind-key 4S-2 window-movetogroup-2
+bind-key 4S-3 window-movetogroup-3
+bind-key 4S-4 window-movetogroup-4
+bind-key 4S-5 window-movetogroup-5
+bind-key 4S-6 window-movetogroup-6
+bind-key 4S-7 window-movetogroup-7
+bind-key 4S-8 window-movetogroup-8
+bind-key 4S-9 window-movetogroup-9
+
+# execs
+#bind-key 4-Return '/usr/bin/alacritty'
+
+# keybinds
+bind-key 4-d menu-cmd
+bind-key M-Tab window-cycle
+bind-key MS-Tab window-rcycle
+bind-key 4-Tab group-cycle
+bind-key 4S-Tab group-rcycle
+bind-key 4-m window-maximize
+bind-key 4M-v window-vmaximize
+bind-key 4M-h window-hmaximize
+bind-key 4-n window-snap-down
+bind-key 4-p window-snap-up
+bind-key 4-b window-snap-left
+bind-key 4-f window-snap-right
+bind-key 4-w window-close
+bind-key 4-s window-stick
+bind-key 4-h window-hide
+bind-key 4S-h menu-window-hidden
+bind-key 4M-r restart
+bind-key 4M-q quit
+
+# window movement
+bind-key 4S-Left window-move-left-big
+bind-key 4S-Down window-move-down-big
+bind-key 4S-Up window-move-up-big
+bind-key 4S-Right window-move-right-big
+bind-key 4-Left window-move-left
+bind-key 4-Down window-move-down
+bind-key 4-Up window-move-up
+bind-key 4-Right window-move-right
+
+# window resize
+bind-key 4MS-Left window-resize-left-big
+bind-key 4MS-Down window-resize-down-big
+bind-key 4MS-Up window-resize-up-big
+bind-key 4MS-Right window-resize-right-big
+bind-key 4M-Left window-resize-left
+bind-key 4M-Down window-resize-down
+bind-key 4M-Up window-resize-up
+bind-key 4M-Right window-resize-right
+
+# mousebinds
+unbind-mouse all
+
+bind-mouse 4-3 window-resize
+bind-mouse 4-1 window-move
+bind-mouse 4S-1 window-lower
+
+# other
+borderwidth 1
+ignore polybar
+ignore MEGAsync
+gap 30 5 5 5
+#autogroup 0 "polybar,Polybar"
+#autogroup 0 "Polybar tray window,tray"
+autogroup 0 "keepassxc,KeePassXC"
+autogroup 0 "megasync,MEGAsync"
+
+# colors
+# Palenight
+# color menufg  "#d0d0d0"
+# color menubg  "#292d3e"
+# color font    "#d0d0d0"
+# color selfont "#292d3e"
+# color activeborder      "#c792ea"
+# color inactiveborder    "#292d3e"
+# Tomorrow dark
+#color menufg  "#c5c8c6"
+#color menubg  "#1d1f21"
+#color font    "#c5c8c6"
+#color selfont "#1d1f21"
+#color activeborder      "#81a2be"
+#color inactiveborder    "#1d1f21"
+# Modus-vivendi
+color menufg  "#ffffff"
+color menubg  "#000000"
+color font    "#ffffff"
+color selfont "#000000"
+color activeborder      "#aeeeee"
+color inactiveborder    "#000000"
