@@ -14,9 +14,7 @@ do
 		notify-send -i "$file" "Changing wallpaper (scaled)..."
 		;;
 	"C-c")
-		cp -f "$file" "$HOME/.local/share/background/bg.png" &&
-		feh --bg-center "$HOME/.local/share/background/bg.png"
-		notify-send -i "$file" "Changing wallpaper (centered)..."
+		setbg.sh "$file"
 		;;
 	"C-t")
 		notify-send "File:" "$file"
