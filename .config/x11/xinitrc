@@ -14,10 +14,9 @@ else
 	. "$HOME/.xprofile"
 fi
 
-[[ -f ~/.config/x11/xresources ]] && xrdb -merge ~/.config/x11/xresources
+[ -f ~/.config/x11/xresources ] && xrdb -merge ~/.config/x11/xresources
 
 # wm
 #exec bspwm 2> $HOME/.cache/bspwm/log
 cwm -c $CWMRC
 #exec icewm-session
-exec alacritty

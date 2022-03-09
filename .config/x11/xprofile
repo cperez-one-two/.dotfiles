@@ -5,13 +5,16 @@ xset s off
 xset dpms 0 0 0
 xsetroot -cursor_name left_ptr &
 
-# apps
-#remaps & # Remap keys script, uses xinputd
+# startup apps
 dunst &
 nm-applet &
-blueman-applet &
+if [ $(hostname) = "stinky" ]; then
+    blueman-applet &
+fi
 wmname LG3D
 keepassxc &
 megasync &
+syncthing &
 
+# startup script
 startup
