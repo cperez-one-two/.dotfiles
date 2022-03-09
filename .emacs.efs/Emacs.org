@@ -316,6 +316,7 @@ All keybinds are handled by ~general~. Leader key is assigned to ~C-c~, since it
          ("C-c C-SPC" . mc/edit-lines)
          ))
 #+end_src
+
 * Development Tools
 
 ** Projectile
@@ -519,7 +520,9 @@ The default file manager in emacs. Allows for quick and easy file management.
 No introduction needed. Not even going to attempt to contain all ~org-mode~ does into a sentence.
 
 ** Basic Config
+
 Putting all basic settings in a function to use as a hook when ~org-mode~ is on in a buffer.
+
 #+begin_src emacs-lisp
 
   (defun efs/org-mode-setup ()
@@ -728,7 +731,7 @@ Enables the <[shortcut]TAB shortcut
          ("t" "ticket" plain
           (file "~/Sync/roam/templates/TicketTemplate.org")
           :if-new
-          (file+head "tickets/${ticketid}.org" "#+title: ${title}\n#+category: ${ticketid}\n#+filetags: Ticket")
+          (file+head "tickets/${slug}.org" "#+title: ${title}\n#+category: %^{ticket-id} %^{category}\n#+filetags: Ticket")
           :unnarrowed t)
          ("p" "project" plain
           (file "~/Sync/roam/templates/ProjectTemplate.org")
@@ -738,12 +741,12 @@ Enables the <[shortcut]TAB shortcut
          ("r" "translate request" plain
           (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
           :if-new
-          (file+head "translate-requests/${ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
+          (file+head "translate-requests/%^{ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
           :unnarrowed t)
          ("h" "href" plain
           (file "~/Sync/roam/templates/HrefTemplate.org")
           :if-new
-          (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: href")
+          (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: %^{category}")
           :unnarrowed t)))
       (setq org-roam-dailies-directory "daily/")
       (org-roam-dailies-capture-templates
@@ -807,7 +810,7 @@ Enables the <[shortcut]TAB shortcut
 
 *** Org Agenda Integration
 
-[[https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html][This article]] details a way to have roam files marked with a 'project' tag to automatically get picked up as an agenda file if they contain todo's. Adds save hooks to dynamically add or remove the tag based on the presence of todo's in the buffer.
+[[https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html][This article]] details a way to have roam files marked with a 'project' tag to automatically get picked up as an agenda file if they contain todo's. Adds save hooks to dynamically add or remove the tag based on the presence of todos in the buffer.
 
 Uses the [[https://github.com/d12frosted/vulpea][vulpea]] function library.
 

@@ -456,7 +456,7 @@
      ("t" "ticket" plain
       (file "~/Sync/roam/templates/TicketTemplate.org")
       :if-new
-      (file+head "tickets/${ticketid}.org" "#+title: ${title}\n#+category: ${ticketid}\n#+filetags: Ticket")
+      (file+head "tickets/${slug}.org" "#+title: ${title}\n#+category: %^{ticket-id} %^{category}\n#+filetags: Ticket")
       :unnarrowed t)
      ("p" "project" plain
       (file "~/Sync/roam/templates/ProjectTemplate.org")
@@ -466,12 +466,12 @@
      ("r" "translate request" plain
       (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
       :if-new
-      (file+head "translate-requests/${ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
+      (file+head "translate-requests/%^{ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
       :unnarrowed t)
      ("h" "href" plain
       (file "~/Sync/roam/templates/HrefTemplate.org")
       :if-new
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: href")
+      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: %^{category}")
       :unnarrowed t)))
   (setq org-roam-dailies-directory "daily/")
   (org-roam-dailies-capture-templates
