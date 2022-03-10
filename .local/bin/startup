@@ -9,5 +9,5 @@ unclutter -b --timeout 3 &
 get-monitors
 
 # launch after xrandr finishes
-feh --bg-center "$HOME/.local/share/background/bg.png" &
+setbg.sh "$HOME/.local/share/background" || setbg.sh "$HOME/.dotfiles/.local/share/dark-sunset.jpg" &
 $XDG_CONFIG_HOME/polybar/launch.sh &

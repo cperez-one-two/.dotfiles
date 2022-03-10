@@ -18,4 +18,4 @@ case "$(file --mime-type -b "$trueloc")" in
        ;;
 esac
 
-feh --bg-center "$HOME/.local/share/background"
+feh --bg-center "$bgloc"
