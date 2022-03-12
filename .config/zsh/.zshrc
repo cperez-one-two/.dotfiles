@@ -10,8 +10,8 @@ precmd() {
 setopt prompt_subst
 
 # simple
-PROMPT='%(?..%F{1}%B✗ %?%b %f)%B%F{5}%3~%f%b${vcs_info_msg_0_}
-%# '
+PROMPT='%(?.%F{8}╭─╸%f.%F{8}╭─╸%f%F{1}%B✗ %?%b %f)%B%F{5}%3~%f%b${vcs_info_msg_0_}
+%F{8}╰╸%f%# '
 zstyle ':vcs_info:git:*' formats ' %B%F{3}%b%f'
 #PROMPT='%(?..%F{1}%B✗ %?%b %f)%b%B%F{14}%n%f%b at %B%F{2}%m%f%b in %B%F{5}%3~%f%b ${vcs_info_msg_0_}%b
 #%F{4}%#%f '
