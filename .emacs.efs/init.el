@@ -195,37 +195,48 @@
 ;; forge: allows you to use a lot of github features from within emacs
 ;; (use-package forge)
 
-(defun efs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
+;; (defun efs/lsp-mode-setup ()
+;;   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+;;   (lsp-headerline-breadcrumb-mode))
 
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t))
+;; (use-package lsp-mode
+;;   :commands (lsp lsp-deferred)
+;;   :hook (lsp-mode . efs/lsp-mode-setup)
+;;   :init
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :config
+;;   (lsp-enable-which-key-integration t))
 
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq lsp-ui-doc-position 'bottom))
+;; (use-package lsp-ui
+;;   :hook (lsp-mode . lsp-ui-mode)
+;;   :config
+;;   (setq lsp-ui-doc-position 'bottom))
 
-(use-package lsp-ivy)
+;; (use-package lsp-ivy)
 
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
-(use-package typescript-mode
-  :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
+(use-package eglot
+  :hook
+  (js2-mode . eglot-ensure))
 
+;; (use-package typescript-mode
+;;   :mode "\\.ts\\'"
+;;   :hook (typescript-mode . lsp-deferred)
+;;   :config
+;;   (setq typescript-indent-level 2))
+
+;; (use-package typescript-mode
+;;   :mode "\\.ts\\'"
+
+;; (use-package js2-mode
+;;   :mode "\\.js\\'"
+;;   :hook (js2-mode . lsp-deferred))
 (use-package js2-mode
   :mode "\\.js\\'"
-  :hook (js2-mode . lsp-deferred))
+  :config
+  (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
 
 (use-package company
   :after lsp-mode
@@ -598,3 +609,9 @@ tasks."
 
   (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
   (advice-add 'org-todo-list :before #'vulpea-agenda-files-update))
+
+(use-package org-jira
+:init
+(setq org-jira-working-dir "~/.emacs.efs/.org-jira")
+:config
+(setq jiralib-url "https://wizehive.atlassian.net/"))

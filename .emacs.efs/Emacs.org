@@ -370,46 +370,57 @@ I honestly forgot what this package does, but I kept it in there to check it out
 Lsp configuration. Moving default ~s-l~ binding to ~C-c l~ to prevent conflicts with wm bindings. Breadcrumb mode on by default. ~lsp-ui~ doc window opens at the bottom. ~lsp-ivy~ does ivy search across project context. ~evil-nerd-commenter~ does what builtin ~M-;~ does, but a little better.
 
 #+begin_src emacs-lisp
-  (defun efs/lsp-mode-setup ()
-    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (lsp-headerline-breadcrumb-mode))
+  ;; (defun efs/lsp-mode-setup ()
+  ;;   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  ;;   (lsp-headerline-breadcrumb-mode))
 
-  (use-package lsp-mode
-    :commands (lsp lsp-deferred)
-    :hook (lsp-mode . efs/lsp-mode-setup)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
-    :config
-    (lsp-enable-which-key-integration t))
+  ;; (use-package lsp-mode
+  ;;   :commands (lsp lsp-deferred)
+  ;;   :hook (lsp-mode . efs/lsp-mode-setup)
+  ;;   :init
+  ;;   (setq lsp-keymap-prefix "C-c l")
+  ;;   :config
+  ;;   (lsp-enable-which-key-integration t))
 
-  (use-package lsp-ui
-    :hook (lsp-mode . lsp-ui-mode)
-    :config
-    (setq lsp-ui-doc-position 'bottom))
+  ;; (use-package lsp-ui
+  ;;   :hook (lsp-mode . lsp-ui-mode)
+  ;;   :config
+  ;;   (setq lsp-ui-doc-position 'bottom))
 
-  (use-package lsp-ivy)
+  ;; (use-package lsp-ivy)
 
   (use-package evil-nerd-commenter
     :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
+  (use-package eglot
+    :hook
+    (js2-mode . eglot-ensure))
 #+end_src
 
 *** Typescript
 
 #+begin_src emacs-lisp
-  (use-package typescript-mode
-    :mode "\\.ts\\'"
-    :hook (typescript-mode . lsp-deferred)
-    :config
-    (setq typescript-indent-level 2))
+  ;; (use-package typescript-mode
+  ;;   :mode "\\.ts\\'"
+  ;;   :hook (typescript-mode . lsp-deferred)
+  ;;   :config
+  ;;   (setq typescript-indent-level 2))
+
+  ;; (use-package typescript-mode
+  ;;   :mode "\\.ts\\'"
+
 #+end_src
 
 *** Javascript
 
 #+begin_src emacs-lisp
+  ;; (use-package js2-mode
+  ;;   :mode "\\.js\\'"
+  ;;   :hook (js2-mode . lsp-deferred))
   (use-package js2-mode
     :mode "\\.js\\'"
-    :hook (js2-mode . lsp-deferred))
+    :config
+    (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
 #+end_src
 
 ** Company mode
@@ -719,102 +730,102 @@ Enables the <[shortcut]TAB shortcut
 
 #+end_src
 
-** Org Roam
+** Org-Roam
 
 ~org-roam~ enables a [[https://zettelkasten.de/introduction/][Zettlekasten]] style of note-taking by linking related notes to one another to connect thoughts, ideas, and findings.
 
 #+begin_src emacs-lisp
 
-    (use-package org-roam
-      :init
-      (setq org-roam-v2-ack t)
-      :custom
-      (org-roam-directory "~/Sync/roam")
-      (org-roam-completion-everywhere t)
-      (org-roam-capture-templates
-       '(("d" "default" plain
-          "%?"
-          :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                             "#+title: ${title}\n")
-          :immediate-finish t
-          :unnarrowed t)
-         ("t" "ticket" plain
-          (file "~/Sync/roam/templates/TicketTemplate.org")
-          :if-new
-          (file+head "tickets/${slug}.org" "#+title: ${title}\n#+category: %^{ticket-id} %^{category}\n#+filetags: Ticket")
-          :unnarrowed t)
-         ("p" "project" plain
-          (file "~/Sync/roam/templates/ProjectTemplate.org")
-          :if-new
-          (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
-          :unnarrowed t)
-         ("r" "translate request" plain
-          (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
-          :if-new
-          (file+head "translate-requests/%^{ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
-          :unnarrowed t)
-         ("h" "href" plain
-          (file "~/Sync/roam/templates/HrefTemplate.org")
-          :if-new
-          (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: %^{category}")
-          :unnarrowed t)))
-      (setq org-roam-dailies-directory "daily/")
-      (org-roam-dailies-capture-templates
-       '(("d" "default" entry "* %?"
-          :if-new
-          (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("What Happened Today"))
-          :unnarrowed t
-          :empty-lines 1)
-         ("j" "journal" entry "* %<%I:%M %p>: %?"
-          :if-new
-          (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Log"))
-          :unnarrowed t
-          :empty-lines 1)))
-      :bind (("C-c n r" . org-roam-buffer-toggle)
-             ("C-c n f" . org-roam-node-find)
-             ("C-c n i" . org-roam-node-insert)
-             :map org-mode-map
-             ("C-M-i"    . completion-at-point)
-             :map org-roam-dailies-map
-             ("Y" . org-roam-dailies-goto-yesterday)
-             ("y" . org-roam-dailies-capture-yesterday)         
-             ("T" . org-roam-dailies-goto-today)
-             ("t" . org-roam-dailies-capture-today)         
-             ("M" . org-roam-dailies-goto-tomorrow)
-             ("m" . org-roam-dailies-capture-tomorrow)         
-             ("D" . org-roam-dailies-goto-date)
-             ("d" . org-roam-dailies-capture-date)         
-             ("f" . org-roam-dailies-goto-next-note)
-             ("b" . org-roam-dailies-goto-previous-note))
-      :bind-keymap
-      ("C-c n d" . org-roam-dailies-map)
-      :config
-      (require 'org-roam-dailies) ;; Ensure the keymap is available
-      (org-roam-db-autosync-mode)
-      (defun my/org-roam-copy-todo-to-today ()
-        (interactive)
-        (let ((org-refile-keep t) ;; Set this to nil to delete the original!
-              (org-roam-dailies-capture-templates
-               '(("t" "tasks" entry "%?"
-                  :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Completed Tasks"))
-                  :empty-lines 1)))
-              (org-after-refile-insert-hook #'save-buffer)
-              today-file
-              pos)
-          (save-window-excursion
-            (org-roam-dailies--capture (current-time) t)
-            (setq today-file (buffer-file-name))
-            (setq pos (point)))
+  (use-package org-roam
+    :init
+    (setq org-roam-v2-ack t)
+    :custom
+    (org-roam-directory "~/Sync/roam")
+    (org-roam-completion-everywhere t)
+    (org-roam-capture-templates
+     '(("d" "default" plain
+        "%?"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                           "#+title: ${title}\n")
+        :immediate-finish t
+        :unnarrowed t)
+       ("t" "ticket" plain
+        (file "~/Sync/roam/templates/TicketTemplate.org")
+        :if-new
+        (file+head "tickets/${slug}.org" "#+title: ${title}\n#+category: %^{ticket-id} %^{category}\n#+filetags: Ticket")
+        :unnarrowed t)
+       ("p" "project" plain
+        (file "~/Sync/roam/templates/ProjectTemplate.org")
+        :if-new
+        (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+        :unnarrowed t)
+       ("r" "translate request" plain
+        (file "~/Sync/roam/templates/TranslateRequestTemplate.org")
+        :if-new
+        (file+head "translate-requests/%^{ticketid}.org" "#+title: ${title}\n#+filetags: Translate-Request")
+        :unnarrowed t)
+       ("h" "href" plain
+        (file "~/Sync/roam/templates/HrefTemplate.org")
+        :if-new
+        (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: %^{category}")
+        :unnarrowed t)))
+    (setq org-roam-dailies-directory "daily/")
+    (org-roam-dailies-capture-templates
+     '(("d" "default" entry "* %?"
+        :if-new
+        (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("What Happened Today"))
+        :unnarrowed t
+        :empty-lines 1)
+       ("j" "journal" entry "* %<%I:%M %p>: %?"
+        :if-new
+        (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Log"))
+        :unnarrowed t
+        :empty-lines 1)))
+    :bind (("C-c n r" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert)
+           :map org-mode-map
+           ("C-M-i"    . completion-at-point)
+           :map org-roam-dailies-map
+           ("Y" . org-roam-dailies-goto-yesterday)
+           ("y" . org-roam-dailies-capture-yesterday)         
+           ("T" . org-roam-dailies-goto-today)
+           ("t" . org-roam-dailies-capture-today)         
+           ("M" . org-roam-dailies-goto-tomorrow)
+           ("m" . org-roam-dailies-capture-tomorrow)         
+           ("D" . org-roam-dailies-goto-date)
+           ("d" . org-roam-dailies-capture-date)         
+           ("f" . org-roam-dailies-goto-next-note)
+           ("b" . org-roam-dailies-goto-previous-note))
+    :bind-keymap
+    ("C-c n d" . org-roam-dailies-map)
+    :config
+    (require 'org-roam-dailies) ;; Ensure the keymap is available
+    (org-roam-db-autosync-mode)
+    (defun my/org-roam-copy-todo-to-today ()
+      (interactive)
+      (let ((org-refile-keep t) ;; Set this to nil to delete the original!
+            (org-roam-dailies-capture-templates
+             '(("t" "tasks" entry "%?"
+                :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Completed Tasks"))
+                :empty-lines 1)))
+            (org-after-refile-insert-hook #'save-buffer)
+            today-file
+            pos)
+        (save-window-excursion
+          (org-roam-dailies--capture (current-time) t)
+          (setq today-file (buffer-file-name))
+          (setq pos (point)))
 
-          ;; Only refile if the target file is different than the current file
-          (unless (equal (file-truename today-file)
-                         (file-truename (buffer-file-name)))
-            (org-refile nil nil (list "Tasks" today-file nil pos)))))
+        ;; Only refile if the target file is different than the current file
+        (unless (equal (file-truename today-file)
+                       (file-truename (buffer-file-name)))
+          (org-refile nil nil (list "Tasks" today-file nil pos)))))
 
-      (add-to-list 'org-after-todo-state-change-hook
-                   (lambda ()
-                     (when (equal org-state "DONE")
-                       (my/org-roam-copy-todo-to-today)))))
+    (add-to-list 'org-after-todo-state-change-hook
+                 (lambda ()
+                   (when (equal org-state "DONE")
+                     (my/org-roam-copy-todo-to-today)))))
 
 #+end_src
 
@@ -892,5 +903,19 @@ Uses the [[https://github.com/d12frosted/vulpea][vulpea]] function library.
 
     (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
     (advice-add 'org-todo-list :before #'vulpea-agenda-files-update))
+
+#+end_src
+
+** Org-Jira
+
+~org-jira~ integrates some Jira functionality into emacs. Documentation on [[https://github.com/ahungry/org-jira][Github]].
+
+#+begin_src emacs-lisp
+
+  (use-package org-jira
+  :init
+  (setq org-jira-working-dir "~/.emacs.efs/.org-jira")
+  :config
+  (setq jiralib-url "https://wizehive.atlassian.net/"))
 
 #+end_src

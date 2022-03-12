@@ -54,3 +54,6 @@ flycheck_*.el
 /.emacs.efs/.lsp-session-v1
 /.local/share/.DS_Store
 /.emacs.efs/.mc-lists.el
+/.emacs.efs/.org-jira/
+/.emacs.efs/request/
+/.local/share/fonts/.uuid
