@@ -71,8 +71,7 @@ compinit
 #preexec() { echo -ne '\e[3 q' ;}        # Use beam shape cursor for each new prompt.
 
 # fnm
-eval "`fnm env`"
-
+eval "$(fnm env --use-on-cd)"
 
 # direnv
 #eval "$(direnv hook zsh)"
