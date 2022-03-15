@@ -128,7 +128,7 @@ cursor-click = pointer
 type = internal/fs
 interval = 25
 
-mount-0 = /home
+mount-0 = ${env:MOUNTPOINT:/}
 format-mounted-prefix = "DISK "
 ;format-mounted-prefix = " "
 format-mounted-prefix-foreground = ${colors.foreground-alt}
