@@ -611,7 +611,21 @@ tasks."
   (advice-add 'org-todo-list :before #'vulpea-agenda-files-update))
 
 (use-package org-jira
-:init
-(setq org-jira-working-dir "~/.emacs.efs/.org-jira")
-:config
-(setq jiralib-url "https://wizehive.atlassian.net/"))
+  :init
+  (setq org-jira-working-dir "~/.emacs.efs/.org-jira")
+  :config
+  (setq jiralib-url "https://wizehive.atlassian.net/"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(vulpea org-roam visual-fill-column org-bullets eshell-git-prompt vterm company-prescient company-box company js2-mode typescript-mode evil-nerd-commenter lsp-ivy lsp-ui lsp-mode magit counsel-projectile projectile multiple-cursors hydra general rainbow-mode which-key rainbow-delimiters modus-themes doom-themes doom-modeline all-the-icons helpful ivy-prescient ivy-rich counsel use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
