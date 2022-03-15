@@ -114,7 +114,7 @@ module-margin-right = 1
 separator = |
 separator-foreground = ${colors.black}
 
-font-0 = DejaVuSansMono Nerd Font Mono:style=Book:pixelsize=12;
+font-0 = DejaVuSansMono Nerd Font Mono:style=Book:pixelsize=10;
 ;font-0 = UbuntuMono Nerd Font:style=Regular:pixelsize=14;
 font-1 = Noto Color Emoji:style=Regular:scale=10;
 font-2 = Noto Sans Symbols2:style=Regular:pixelsize=11;
@@ -128,7 +128,7 @@ cursor-click = pointer
 type = internal/fs
 interval = 25
 
-mount-0 = /
+mount-0 = /home
 format-mounted-prefix = "DISK "
 ;format-mounted-prefix = " "
 format-mounted-prefix-foreground = ${colors.foreground-alt}
@@ -237,7 +237,7 @@ format-foreground = {colors.foreground}
 format-padding = 2
 
 label = %title%
-label-maxlen = 50
+label-maxlen = 25
 
 ; Used instead of label when there is no window title
 ; Available tokens:
