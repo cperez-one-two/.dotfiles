@@ -10,7 +10,7 @@ precmd() {
 setopt prompt_subst
 
 # simple
-PROMPT='%(?.%F{7}╭─╸%f.%F{7}╭─╸%f%F{1}%B✗ %?%b %f)%B%F{5}%3~%f%b${vcs_info_msg_0_}
+PROMPT='%(?.%F{7}╭─╸%f.%F{7}╭─╸%f%F{1}%B✗ %?%b %f)%b%B%F{5}%3~%f%b${vcs_info_msg_0_}%b
 %F{7}╰╸%f%# '
 zstyle ':vcs_info:git:*' formats ' %B%F{3}%b%f'
 #PROMPT='%(?..%F{1}%B✗ %?%b %f)%b%B%F{14}%n%f%b at %B%F{2}%m%f%b in %B%F{5}%3~%f%b ${vcs_info_msg_0_}%b
@@ -45,8 +45,7 @@ export KEYTIMEOUT=1
 # Auto/tab complete
 autoload -Uz compinit
 _comp_options+=(globdots)               # Include hidden files.
-fpath+=~/.config/zsh/completions/_fnm   # fnm completions
-compinit
+#fpath+=~/.config/zsh/completions/_fnm   # fnm completions
 
 
 # Keybinds
