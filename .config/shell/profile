@@ -1,7 +1,31 @@
 #!/bin/sh
 # Profile. Environment variables go here.
 
-# Default programs
+# PATH 
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
+export PATH=/home/uhoh/.local/bin/fnm:$PATH
+
+# TERM
+#export TERM="xterm-256color"
+
+# HOME cleanup
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+
+# zsh
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+# wm
+export CWMRC="${XDG_CONFIG_HOME:-$HOME/.config}/cwm/.cwmrc"
+
+# Defaults
 export EDITOR="nvim"
 if [ $(hostname) = "meep" ]; then
     export TERMINAL="termite"
@@ -9,28 +33,6 @@ else
     export TERMINAL="alacritty"
 fi
 export BROWSER="brave"
-
-# $PATH variables
-# ~/.local/bin
-export PATH="$PATH:$HOME/.local/bin"
-# ~/.emacs.d/bin
-export PATH="$PATH:$HOME/.emacs.d/bin"
-# fnm
-export PATH=/home/uhoh/.local/bin/fnm:$PATH
-
-# TERM
-#export TERM="xterm-256color"
-
-# ~/ cleanup
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-export LESSHISTFILE="-"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-export CWMRC="${XDG_CONFIG_HOME:-$HOME/.config}/cwm/.cwmrc"
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export SCROTS="$HOME/pics/scrots"
 
 # Qt applications styling

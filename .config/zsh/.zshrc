@@ -30,11 +30,6 @@ setopt autocd                   # cd into directory just by typing it
 stty stop undef                 # Disable C-s to freeze terminal
 unsetopt BEEP                   # Disable that HORRIBLE beep
 
-# History settings
-HISTFILE=~/.cache/zsh/history
-HISTSIZE=100000
-SAVEHIST=100000
-
 # Source aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
@@ -43,7 +38,7 @@ bindkey -e
 export KEYTIMEOUT=1
 
 # Auto/tab complete
-autoload -Uz compinit
+autoload -U compinit; compinit
 _comp_options+=(globdots)               # Include hidden files.
 #fpath+=~/.config/zsh/completions/_fnm   # fnm completions
 
@@ -77,9 +72,9 @@ eval "$(fnm env --use-on-cd)"
 
 # Plugins
 # zsh-fast-syntax-highlighting
-source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $ZDOTDIR/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 # zsh-z :: Fast cd'ing into folders
-source ~/.config/zsh/plugins/zsh-z/zsh-z.plugin.zsh
+source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"
