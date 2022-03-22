@@ -10,4 +10,5 @@ get-monitors
 
 # launch after xrandr finishes
 setbg.sh "$HOME/.local/share/background" || setbg.sh "$HOME/.dotfiles/.local/share/dark-sunset.jpg" &
+sleep 1 && \
 $XDG_CONFIG_HOME/polybar/launch.sh &
