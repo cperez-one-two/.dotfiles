@@ -428,11 +428,19 @@
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 
+(use-package geiser-guile)
+
 (with-eval-after-load 'org
+  (require 'scheme)
+  (require 'python)
+  (setq geiser-active-implementations '(guile))
+  (custom-set-variables
+   '(scheme-program-name "guile"))
   (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-      (python . t)))
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (scheme . t)))
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 ;; This is needed as of Org 9.2
@@ -440,6 +448,7 @@
 
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("sc" . "src scheme"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
 ;; Automatically tangle our Emacs.org config file when we save it
@@ -611,21 +620,7 @@ tasks."
   (advice-add 'org-todo-list :before #'vulpea-agenda-files-update))
 
 (use-package org-jira
-  :init
-  (setq org-jira-working-dir "~/.emacs.efs/.org-jira")
-  :config
-  (setq jiralib-url "https://wizehive.atlassian.net/"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(vulpea org-roam visual-fill-column org-bullets eshell-git-prompt vterm company-prescient company-box company js2-mode typescript-mode evil-nerd-commenter lsp-ivy lsp-ui lsp-mode magit counsel-projectile projectile multiple-cursors hydra general rainbow-mode which-key rainbow-delimiters modus-themes doom-themes doom-modeline all-the-icons helpful ivy-prescient ivy-rich counsel use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+:init
+(setq org-jira-working-dir "~/.emacs.efs/.org-jira")
+:config
+(setq jiralib-url "https://wizehive.atlassian.net/"))

@@ -688,16 +688,28 @@ Variable font and sizes for headers
 
 ~org-babel~ allows arbitrary code evaluation within org-mode code blocks.
 
+Some languages need to be pre-installed, such as the Lisp dialects
+
+#+begin_src emacs-lisp
+  (use-package geiser-guile)
+#+end_src
+
 *** Load languages
 
 List of languages to load. ~conf-unix~ should pick up config files and highlight syntax of those too.
 
 #+begin_src emacs-lisp
   (with-eval-after-load 'org
+    (require 'scheme)
+    (require 'python)
+    (setq geiser-active-implementations '(guile))
+    (custom-set-variables
+     '(scheme-program-name "guile"))
     (org-babel-do-load-languages
-        'org-babel-load-languages
-        '((emacs-lisp . t)
-        (python . t)))
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (python . t)
+       (scheme . t)))
     (push '("conf-unix" . conf-unix) org-src-lang-modes))
 #+end_src
 
@@ -711,6 +723,7 @@ Enables the <[shortcut]TAB shortcut
 
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("sc" . "src scheme"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
 #+end_src
