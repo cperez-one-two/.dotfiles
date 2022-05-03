@@ -447,6 +447,15 @@ Company mode allows automatic appearance of completion-at-point popup list while
 
 #+end_src
 
+** Docker mode
+
+Major mode for working with Dockerfiles
+
+#+begin_src emacs-lisp
+  (use-package dockerfile-mode
+    :mode ("Dockerfile\\'" . dockerfile-mode))
+#+end_src
+
 * Terminals
 
 ** vterm
@@ -931,4 +940,14 @@ Uses the [[https://github.com/d12frosted/vulpea][vulpea]] function library.
   :config
   (setq jiralib-url "https://wizehive.atlassian.net/"))
 
+#+end_src
+
+** Presentations
+
+Sometimes, it's useful to have your org notes used as the basis for a presentation. The ~org-tree-slide~ package offers a simple way to present your org notes as slides.
+
+#+begin_src emacs-lisp
+  (use-package org-tree-slide
+    :custom
+    (org-image-actual-width nil))
 #+end_src

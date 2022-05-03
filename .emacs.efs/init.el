@@ -253,6 +253,9 @@
   :config
   (company-prescient-mode 1))
 
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+
 (unless (eq system-type 'gnu/linux)
   (use-package exec-path-from-shell
     :config
@@ -624,3 +627,21 @@ tasks."
 (setq org-jira-working-dir "~/.emacs.efs/.org-jira")
 :config
 (setq jiralib-url "https://wizehive.atlassian.net/"))
+
+(use-package org-tree-slide
+  :custom
+  (org-image-actual-width nil))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(org-tree-slide which-key vulpea vterm visual-fill-column use-package typescript-mode rainbow-mode rainbow-delimiters org-jira org-bullets multiple-cursors modus-themes magit lsp-ui lsp-ivy js2-mode ivy-rich ivy-prescient hydra helpful general geiser-mit geiser-guile evil-nerd-commenter eshell-git-prompt eglot doom-themes doom-modeline dockerfile-mode counsel-projectile company-prescient company-box))
+ '(scheme-program-name "guile"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
