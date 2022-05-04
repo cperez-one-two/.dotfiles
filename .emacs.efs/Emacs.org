@@ -395,6 +395,7 @@ Lsp configuration. Moving default ~s-l~ binding to ~C-c l~ to prevent conflicts 
   (use-package eglot
     :hook
     (js2-mode . eglot-ensure))
+
 #+end_src
 
 *** Typescript
@@ -421,6 +422,29 @@ Lsp configuration. Moving default ~s-l~ binding to ~C-c l~ to prevent conflicts 
     :mode "\\.js\\'"
     :config
     (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
+#+end_src
+
+*** PHP
+
+For PHP, I'm using =web-mode= with =emmet-mode= for HTML
+
+#+begin_src emacs-lisp
+  (use-package web-mode)
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode)))
+
+  (use-package emmet-mode)
 #+end_src
 
 ** Company mode
