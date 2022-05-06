@@ -1,6 +1,7 @@
 \.git
 \.gitignore
 \.gitmodules
+\.local/share/.DS_Store
 misc
 LICENSE
 ^/.*\.org

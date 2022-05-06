@@ -57,3 +57,5 @@ flycheck_*.el
 /.emacs.efs/.org-jira/
 /.emacs.efs/request/
 /.local/share/fonts/.uuid
+/.config/zsh/.zsh_history
+/.config/zsh/.zsh_sessions/
