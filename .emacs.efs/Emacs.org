@@ -209,12 +209,13 @@ In conjuction with ~ivy~ and ~counsel~, ~helpful~ produces more 'helpful' output
 ~doom-themes~ is a theme library for a lot of different themes.
 
 #+begin_src emacs-lisp
-  (use-package doom-themes)
+  (use-package doom-themes
     ;;:init (load-theme 'doom-snazzy t)
     ;;:init (load-theme 'doom-gruvbox t)
     ;;:init (load-theme 'doom-horizon t)
     ;;:init (load-theme 'doom-palenight t)
-    ;;:init (load-theme 'doom-tomorrow-night t))
+    ;;:init (load-theme 'doom-tomorrow-night t)
+    :init (load-theme 'doom-solarized-dark-high-contrast t))
 
 #+end_src
 
@@ -233,7 +234,7 @@ In conjuction with ~ivy~ and ~counsel~, ~helpful~ produces more 'helpful' output
     (modus-themes-load-themes)
     :config
     ;; Load the theme of your choice:
-    (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+    ;;(modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
 
 #+end_src

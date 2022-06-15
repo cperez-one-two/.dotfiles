@@ -111,12 +111,13 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
-(use-package doom-themes)
+(use-package doom-themes
   ;;:init (load-theme 'doom-snazzy t)
   ;;:init (load-theme 'doom-gruvbox t)
   ;;:init (load-theme 'doom-horizon t)
   ;;:init (load-theme 'doom-palenight t)
-  ;;:init (load-theme 'doom-tomorrow-night t))
+  ;;:init (load-theme 'doom-tomorrow-night t)
+  :init (load-theme 'doom-solarized-dark-high-contrast t))
 
 (use-package modus-themes
   :init
@@ -130,7 +131,7 @@
   (modus-themes-load-themes)
   :config
   ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+  ;;(modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 
 (use-package rainbow-delimiters
