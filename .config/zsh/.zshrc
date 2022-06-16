@@ -72,7 +72,7 @@ eval "$(fnm env --use-on-cd)"
 
 # Plugins
 # zsh-fast-syntax-highlighting
-source $ZDOTDIR/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $ZDOTDIR/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
 # zsh-z :: Fast cd'ing into folders
 source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
 
