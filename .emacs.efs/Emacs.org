@@ -586,6 +586,7 @@ Putting all basic settings in a function to use as a hook when ~org-mode~ is on 
     (setq org-log-into-drawer t)
     (setq org-agenda-files
           '("~/Sync/roam/20220228153956-birthdays.org"))
+    (setq org-scheduled-past-days 5)
     (setq org-todo-keywords
           '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "BACKLOG(b)" "|" "DONE(d!)")))
 
