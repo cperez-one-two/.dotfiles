@@ -229,7 +229,7 @@
 ;;   (setq typescript-indent-level 2))
 
 ;; (use-package typescript-mode
-;;   :mode "\\.ts\\'"
+;;   :mode "\\.ts\\'")
 
 ;; (use-package js2-mode
 ;;   :mode "\\.js\\'"
@@ -350,16 +350,17 @@
           ("@home" . ?H)
           ("@work" . ?W)
           ("batch" . ?b)))
-  (setq org-columns-default-format "%20CATEGORY(Category) %65ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS")
+
+  (setq org-columns-default-format "%TAGS %CATEGORY(Category) %ITEM(Task)")
 
   (setq org-agenda-custom-commands
         `(("d" "Work Dashboard"
            ((agenda "" ((org-deadline-warning-days 7)))
-            (tags-todo "+PRIORITY=\"A\"+@work"
-                       ((org-agenda-overriding-header "High Priority")))
             (tags-todo "+TODO=\"NEXT\"+@work"
                        ((org-agenda-overriding-header "Next Actions")
                         (org-agenda-max-todos nil)))
+            (tags-todo "+PRIORITY=\"A\"+@work"
+                       ((org-agenda-overriding-header "High Priority")))
             (tags-todo "+TODO=\"TODO\"+@work-batch"
                        ((org-agenda-overriding-header "Active")
                         (org-agenda-files org-agenda-files))
@@ -368,18 +369,22 @@
                        ((org-agenda-overriding-header "Waiting On External")
                         (org-agenda-files org-agenda-files))
                        (org-agenda-text-search-extra-files nil))
-            (tags-todo "+batch+@work" ((org-agenda-overriding-header "Batchable Small Tasks"))))
+            (tags-todo "+TODO=\"BACKLOG\"+@work"
+                       ((org-agenda-overriding-header "Backlog")
+                        (org-agenda-files org-agenda-files))
+                       (org-agenda-text-search-extra-files nil))
+            )
            ((org-agenda-tag-filter-preset '("+@work"))))
-          ("n" "Next Tasks"
-           ((agenda "" ((org-deadline-warning-days 7)))
-            (tags-todo "+TODO=\"NEXT\"+@work"
-                       ((org-agenda-overriding-header "Next Tasks")))))
+          ;; ("n" "Next Tasks"
+          ;;  ((agenda "" ((org-deadline-warning-days 7)))
+          ;;   (tags-todo "+TODO=\"NEXT\"+@work"
+          ;;              ((org-agenda-overriding-header "Next Tasks")))))
 
-          ;; Low-effort next actions
-          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@work"
-           ((org-agenda-overriding-header "Low Effort Work Tasks")
-            (org-agenda-max-todos 20)
-            (org-agenda-files org-agenda-files)))
+          ;; ;; Low-effort next actions
+          ;; ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@work"
+          ;;  ((org-agenda-overriding-header "Low Effort Work Tasks")
+          ;;   (org-agenda-max-todos 20)
+          ;;   (org-agenda-files org-agenda-files)))
 
           ("h" "Home Dashboard"
            ((agenda "" ((org-deadline-warning-days 7)
@@ -398,18 +403,22 @@
                        ((org-agenda-overriding-header "Waiting On External")
                         (org-agenda-files org-agenda-files))
                        (org-agenda-text-search-extra-files nil))
-            (tags-todo "+batch+@home" ((org-agenda-overriding-header "Batchable Small Tasks"))))
+            (tags-todo "+TODO=\"BACKLOG\"+@home"
+                         ((org-agenda-overriding-header "Backlog")
+                          (org-agenda-files org-agenda-files))
+                         (org-agenda-text-search-extra-files nil))
            ((org-agenda-tag-filter-preset '("+@home"))))
-          ("n" "Next Tasks"
-           ((agenda "" ((org-deadline-warning-days 7)))
-            (tags-todo "+TODO=\"NEXT\"+@home"
-                       ((org-agenda-overriding-header "Next Tasks")))))
+          ;; ("n" "Next Tasks"
+          ;;  ((agenda "" ((org-deadline-warning-days 7)))
+          ;;   (tags-todo "+TODO=\"NEXT\"+@home"
+          ;;              ((org-agenda-overriding-header "Next Tasks")))))
 
-          ;; Low-effort next actions
-          ("f" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@home"
-           ((org-agenda-overriding-header "Low Effort Home Tasks")
-            (org-agenda-max-todos 20)
-            (org-agenda-files org-agenda-files))))))
+          ;; ;; Low-effort next actions
+          ;; ("f" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0+@home"
+          ;;  ((org-agenda-overriding-header "Low Effort Home Tasks")
+          ;;   (org-agenda-max-todos 20)
+          ;;   (org-agenda-files org-agenda-files)))
+          ))))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
@@ -493,7 +502,7 @@
    '(("d" "default" plain
       "%?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                         "#+title: ${title}\n")
+                         "#+title: ${title}\n#+category: ${title}")
       :immediate-finish t
       :unnarrowed t)
      ("t" "ticket" plain
