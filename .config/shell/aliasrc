@@ -16,7 +16,8 @@ alias \
   lsd="lsd -h --color auto --group-dirs first" \
   grep="grep --color=auto" \
   diff="diff --color=auto" \
-  ccat="highlight --out-format=ansi"
+  ccat="highlight --out-format=ansi" \
+  bat="bat --theme='Solarized (dark)'"
 
 # Common commands
 alias \
