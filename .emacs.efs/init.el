@@ -25,8 +25,11 @@
 ;; auto-revert file buffers on changes from elsewhere
 (global-auto-revert-mode 1)
 
-  ;; spaces instead of tabs
+;; spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+
+;; move auto-backups to one place
+(setq backup-directory-alist `(("." . "~/.saves/")))
 
 ;; font
 (cond
