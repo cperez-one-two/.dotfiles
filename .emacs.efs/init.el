@@ -34,8 +34,8 @@
 ;; font
 (cond
   ((eq system-type 'gnu/linux)
-    (defvar efs/default-font-size 120)
-    (defvar efs/default-variable-font-size 120))
+    (defvar efs/default-font-size 140)
+    (defvar efs/default-variable-font-size 140))
   ((eq system-type 'darwin)
     (defvar efs/default-font-size 180)
     (defvar efs/default-variable-font-size 180))
@@ -43,9 +43,9 @@
     (message "Config for unknown system type.")))
 
 ;; later used to configure UI elements
-(set-face-attribute 'default nil :font "DejaVuSansMono Nerd Font Mono" :height efs/default-font-size :weight 'book)
-(set-face-attribute 'fixed-pitch nil :font "DejaVuSansMono Nerd Font Mono" :height efs/default-font-size :weight 'book)
-(set-face-attribute 'variable-pitch nil :font "DejaVuSansMono Nerd Font" :height efs/default-variable-font-size :weight 'book)
+(set-face-attribute 'default nil :font "Iosevka Term SS03" :height efs/default-font-size :weight 'light)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka Term SS03" :height efs/default-font-size :weight 'light)
+(set-face-attribute 'variable-pitch nil :font "Iosevka Term SS03" :height efs/default-variable-font-size :weight 'light)
 ;; (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono" :height efs/default-font-size)
 ;; (set-face-attribute 'fixed-pitch nil :font "Iosevka Nerd Font Mono" :height efs/default-font-size)
 ;; (set-face-attribute 'variable-pitch nil :font "Iosevka" :height efs/default-variable-font-size :weight 'medium)
@@ -438,7 +438,7 @@
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVuSansMono Nerd Font" :weight 'book :height (cdr face)))
+    (set-face-attribute (car face) nil :font "Iosevka Term SS03" :weight 'semibold :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   ;;(set-face-attribute 'org-default nil :font "Ubuntu Nerd Font" :weight 'regular)

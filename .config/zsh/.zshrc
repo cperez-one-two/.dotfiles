@@ -31,7 +31,7 @@ stty stop undef                 # Disable C-s to freeze terminal
 unsetopt BEEP                   # Disable that HORRIBLE beep
 
 # Source aliases
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
 # emacs mode
 bindkey -e
@@ -74,7 +74,9 @@ eval "$(fnm env --use-on-cd)"
 # zsh-fast-syntax-highlighting
 source $ZDOTDIR/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
 # zsh-z :: Fast cd'ing into folders
-source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
+#source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
+# zoxide :: zsh-z replacement
+eval "$(zoxide init zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"
