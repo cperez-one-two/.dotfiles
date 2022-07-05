@@ -375,8 +375,7 @@
             (tags-todo "+TODO=\"BACKLOG\"+@work"
                        ((org-agenda-overriding-header "Backlog")
                         (org-agenda-files org-agenda-files))
-                       (org-agenda-text-search-extra-files nil))
-            )
+                       (org-agenda-text-search-extra-files nil)))
            ((org-agenda-tag-filter-preset '("+@work"))))
           ;; ("n" "Next Tasks"
           ;;  ((agenda "" ((org-deadline-warning-days 7)))
@@ -390,11 +389,9 @@
           ;;   (org-agenda-files org-agenda-files)))
 
           ("h" "Home Dashboard"
-           ((agenda "" ((org-deadline-warning-days 7)
-                        ))
+           ((agenda "" ((org-deadline-warning-days 7)))
             (tags-todo "+PRIORITY=\"A\"+@home"
                        ((org-agenda-overriding-header "High Priority")))
-
             (tags-todo "+TODO=\"NEXT\"+@home"
                        ((org-agenda-overriding-header "Next Actions")
                         (org-agenda-max-todos nil)))
@@ -409,7 +406,7 @@
             (tags-todo "+TODO=\"BACKLOG\"+@home"
                          ((org-agenda-overriding-header "Backlog")
                           (org-agenda-files org-agenda-files))
-                         (org-agenda-text-search-extra-files nil))
+                         (org-agenda-text-search-extra-files nil)))
            ((org-agenda-tag-filter-preset '("+@home"))))
           ;; ("n" "Next Tasks"
           ;;  ((agenda "" ((org-deadline-warning-days 7)))
@@ -421,7 +418,7 @@
           ;;  ((org-agenda-overriding-header "Low Effort Home Tasks")
           ;;   (org-agenda-max-todos 20)
           ;;   (org-agenda-files org-agenda-files)))
-          ))))
+          )))
 
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode)
