@@ -119,8 +119,8 @@
   ;;:init (load-theme 'doom-gruvbox t)
   ;;:init (load-theme 'doom-horizon t)
   ;;:init (load-theme 'doom-palenight t)
-  ;;:init (load-theme 'doom-tomorrow-night t)
-  :init (load-theme 'doom-solarized-dark-high-contrast t))
+  :init (load-theme 'doom-tomorrow-night t))
+  ;; :init (load-theme 'doom-solarized-dark-high-contrast t))
 
 (use-package modus-themes
   :init

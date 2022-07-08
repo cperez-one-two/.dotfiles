@@ -20,13 +20,13 @@
 ; from xresources
 foreground = ${xrdb:foreground}
 foreground-alt = ${xrdb:color8}
-background = ${xrdb:background}
-;background = #000000
+;background = ${xrdb:background}
+background = #000000
 background-alt = ${xrdb:background}
 primary = ${xrdb:color4}
 secondary = ${xrdb:color2}
 alert = ${xrdb:color1}
-black = ${xrdb:color0}
+black = ${xrdb:color8}
 red = ${xrdb:color1}
 green = ${xrdb:color2}
 yellow = ${xrdb:color3}
