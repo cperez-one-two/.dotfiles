@@ -38,18 +38,22 @@ Added conditional to disable ~visible-bell~ on MacOS.
 Some default settings for non-visual elements.
 
 #+begin_src emacs-lisp
-  ;; auto-revert dired and other buffers
-  (setq global-auto-revert-non-file-buffers t)
+    ;; auto-revert dired and other buffers
+    (setq global-auto-revert-non-file-buffers t)
 
-  ;; auto-revert file buffers on changes from elsewhere
-  (global-auto-revert-mode 1)
+    ;; auto-revert file buffers on changes from elsewhere
+    (global-auto-revert-mode 1)
 
-  ;; spaces instead of tabs
-  (setq-default indent-tabs-mode nil)
+    ;; spaces instead of tabs
+    (setq-default indent-tabs-mode nil)
 
-  ;; move auto-backups to one place
-  (setq backup-directory-alist `(("." . "~/.saves/")))
+    ;; move auto-backups to one place
+    (setq backup-directory-alist `(("." . "~/.saves/")))
 
+    ;; tab-bar-mode by default
+    (tab-bar-mode 1)
+    (setq tab-bar-close-button-show nil
+          tab-bar-new-button-show nil)
 #+end_src
 
 ** Font

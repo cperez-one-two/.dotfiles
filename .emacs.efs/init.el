@@ -31,6 +31,11 @@
 ;; move auto-backups to one place
 (setq backup-directory-alist `(("." . "~/.saves/")))
 
+;; tab-bar-mode by default
+(tab-bar-mode 1)
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
+
 ;; font
 (cond
   ((eq system-type 'gnu/linux)
