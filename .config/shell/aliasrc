@@ -17,7 +17,7 @@ alias \
   grep="grep --color=auto" \
   diff="diff --color=auto" \
   ccat="highlight --out-format=ansi" \
-  bat="bat --theme='Solarized (dark)'"
+  bat="bat --theme='gruvbox-dark'"
 
 # Common commands
 alias \
