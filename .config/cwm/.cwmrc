@@ -81,7 +81,7 @@ bind-mouse 4S-1 window-lower
 borderwidth 1
 ignore polybar
 ignore MEGAsync
-gap 30 5 5 5
+gap 5 35 5 5
 #autogroup 0 "polybar,Polybar"
 #autogroup 0 "Polybar tray window,tray"
 autogroup 0 "keepassxc,KeePassXC"
@@ -96,16 +96,16 @@ autogroup 0 "megasync,MEGAsync"
 # color activeborder      "#c792ea"
 # color inactiveborder    "#292d3e"
 # Tomorrow dark
-#color menufg  "#c5c8c6"
-#color menubg  "#1d1f21"
-#color font    "#c5c8c6"
-#color selfont "#1d1f21"
-#color activeborder      "#81a2be"
-#color inactiveborder    "#1d1f21"
+color menufg  "#c5c8c6"
+color menubg  "#1d1f21"
+color font    "#c5c8c6"
+color selfont "#1d1f21"
+color activeborder      "#8abeb7"
+color inactiveborder    "#1d1f21"
 # Modus-vivendi
-color menufg  "#ffffff"
-color menubg  "#000000"
-color font    "#ffffff"
-color selfont "#000000"
-color activeborder      "#aeeeee"
-color inactiveborder    "#000000"
+#color menufg  "#ffffff"
+#color menubg  "#000000"
+#color font    "#ffffff"
+#color selfont "#000000"
+#color activeborder      "#aeeeee"
+#color inactiveborder    "#000000"
