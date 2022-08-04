@@ -64,5 +64,6 @@ flycheck_*.el
 /.emacs.efs/games/
 
 # Emacs cop
-/.emacs.cop/*
+/.emacs.cop/*/
 !/.emacs.cop/init.el
+/.emacs.efs/projects
