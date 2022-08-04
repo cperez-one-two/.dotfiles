@@ -46,6 +46,8 @@ flycheck_*.el
 
 # network security
 /network-security.data
+
+# Emacs efs
 /.emacs.efs/org-roam.db
 /.emacs.efs/bookmarks
 /.emacs.efs/eshell/
@@ -60,3 +62,7 @@ flycheck_*.el
 /.config/zsh/.zsh_history
 /.config/zsh/.zsh_sessions/
 /.emacs.efs/games/
+
+# Emacs cop
+/.emacs.cop/*
+!/.emacs.cop/init.el
