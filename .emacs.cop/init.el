@@ -77,6 +77,14 @@
 
 (add-hook 'dired-mode-hook #'denote-dired-mode)
 
+;; evil-mode - because I'm evil... I commit nefarious acts... on my troublemaker shit
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+(require 'evil)
+(evil-set-undo-system 'undo-redo)
+(evil-mode 1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
