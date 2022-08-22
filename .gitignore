@@ -69,3 +69,10 @@ flycheck_*.el
 !/.emacs.cop/init.el
 /.emacs.efs/projects
 
+# Emacs chrispmacs
+/.config/chrispmacs/*/
+/.config/chrispmacs/*
+!/.config/chrispmacs/init.el
+!/.config/chrispmacs/early-init.el
+!/.config/chrispmacs/modules
+!/.config/chrispmacs/bootstrap

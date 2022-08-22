@@ -664,3 +664,17 @@ tasks."
 (use-package org-tree-slide
   :custom
   (org-image-actual-width nil))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(which-key web-mode vulpea vterm visual-fill-column use-package typescript-mode rainbow-mode rainbow-delimiters org-tree-slide org-jira org-bullets multiple-cursors modus-themes magit lsp-ui lsp-ivy js2-mode ivy-rich ivy-prescient hydra helpful general geiser-mit geiser-guile evil-nerd-commenter eshell-git-prompt emmet-mode eglot doom-themes doom-modeline dockerfile-mode counsel-projectile company-prescient company-box all-the-icons))
+ '(scheme-program-name "guile"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
