@@ -65,5 +65,7 @@ flycheck_*.el
 
 # Emacs cop
 /.emacs.cop/*/
+/.emacs.cop/*
 !/.emacs.cop/init.el
 /.emacs.efs/projects
+

@@ -48,9 +48,18 @@
     (message "Config for unknown system type.")))
 
 ;; later used to configure UI elements
-(set-face-attribute 'default nil :font "Iosevka Term SS03" :height efs/default-font-size :weight 'light)
-(set-face-attribute 'fixed-pitch nil :font "Iosevka Term SS03" :height efs/default-font-size :weight 'light)
-(set-face-attribute 'variable-pitch nil :font "Iosevka Term SS03" :height efs/default-variable-font-size :weight 'light)
+(set-face-attribute 'default nil
+                    :font "Iosevka Term SS03"
+                    :height efs/default-font-size
+                    :weight 'light)
+(set-face-attribute 'fixed-pitch nil
+                    :font "Iosevka Term SS03"
+                    :height efs/default-font-size
+                    :weight 'light)
+(set-face-attribute 'variable-pitch nil
+                    :font "Iosevka Term SS03"
+                    :height efs/default-variable-font-size
+                    :weight 'light)
 
 ;; Initialize package repos
 (require 'package)
@@ -63,17 +72,86 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+;; org-mode config
+(defun cop/org-mode-setup ()
+  (org-indent-mode)
+  ;;(variable-pitch-mode 1)
+  (visual-line-mode 1))
+
+(require 'org)
+ (setq org-agenda-files
+       '("~/Sync/Resources/denote/20220821T210952--next-actions__meta.org"))
+(setq org-ellipsis " ▾"
+      org-hide-emphasis-markers t)
+(setq org-agenda-start-with-log-mode t)
+(setq org-log-done 'time)
+(setq org-log-into-drawer t)
+(setq org-scheduled-past-days 5)
+(setq org-todo-keywords
+      '((sequence "NEXT(n)" "BACKLOG(b)" "|" "DONE(d!)")))
+
+(setq org-tag-alist
+      '((:startgroup)
+        (:endgroup)
+        ("@home" . ?h)
+        ("@computer" . ?c)
+        ("@errands" . ?e)
+        ("@Calls" . ?C)
+        ("@meetings" . ?m)
+        ("@waiting" . ?w)
+        ("@someday" . ?s)))
+
+(setq org-agenda-custom-commands
+      '(("n" "Next Actions"
+         ((agenda "" ((org-deadline-warning-days 7)
+                      (org-agenda-prefix-format "  %T %?-12t% s")))
+          (tags "+@computer"
+                     ((org-agenda-overriding-header "@computer")
+                      (org-agenda-max-todos nil)
+                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-prefix-format "  %?-12t% s")))
+          (tags "+@home"
+                     ((org-agenda-overriding-header "@home")
+                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-prefix-format "  %?-12t% s")))
+          (tags "+@Calls"
+                     ((org-agenda-overriding-header "@Calls")
+                      (org-agenda-files org-agenda-files)
+                      (org-agenda-sorting-strategy '(priority-down))
+                      (org-agenda-prefix-format "  %?-12t% s"))
+                     (org-agenda-text-search-extra-files nil))
+          (tags "+@meetings"
+                     ((org-agenda-overriding-header "@meeting-items")
+                      (org-agenda-files org-agenda-files)
+                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-prefix-format "  %?-12t% s"))
+                     (org-agenda-text-search-extra-files nil))
+          (tags "+@errands"
+                     ((org-agenda-overriding-header "@errands")
+                      (org-agenda-files org-agenda-files)
+                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-prefix-format "  %?-12t% s"))
+                     (org-agenda-text-search-extra-files nil))
+          (tags "+@waiting"
+                     ((org-agenda-overriding-header "@waiting-on")
+                      (org-agenda-files org-agenda-files)
+                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-prefix-format "  %?-12t% s"))
+                     (org-agenda-text-search-extra-files nil))))))
+
+(add-hook 'org-mode-hook 'cop/org-mode-setup)
+
 ;; denote - a simlpe note-taking package
 (require 'denote)
 (setq denote-directory (expand-file-name "~/Sync/Resources/denote"))
-(setq denote-known-keywords '("emacs" "denote" "testing"))
+(setq denote-known-keywords '("emacs" "testing" "project"))
 (setq denote-file-type nil)
-(setq denote-link-backlinks-display-buffer-action
-      '((display-buffer-reuse-window
-         display-buffer-in-side-window)
-        (side . left)
-        (slot . 99)
-        (window-width . 0.3)))
+;; (setq denote-link-backlinks-display-buffer-action
+;;       '((display-buffer-reuse-window
+;;          display-buffer-in-side-window)
+;;         (side . left)
+;;         (slot . 99)
+;;         (window-width . 0.3)))
 
 (add-hook 'dired-mode-hook #'denote-dired-mode)
 
@@ -81,9 +159,9 @@
 (unless (package-installed-p 'evil)
   (package-install 'evil))
 
-(require 'evil)
-(evil-set-undo-system 'undo-redo)
-(evil-mode 1)
+;(require 'evil)
+;(evil-set-undo-system 'undo-redo)
+;(evil-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
