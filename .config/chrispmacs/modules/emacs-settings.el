@@ -55,28 +55,3 @@
 (tab-bar-mode 1)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
-
-;; font
-(cond
-  ((eq system-type 'gnu/linux)
-    (defvar cop/default-font-size 140)
-    (defvar cop/default-variable-font-size 140))
-  ((eq system-type 'darwin)
-    (defvar cop/default-font-size 180)
-    (defvar cop/default-variable-font-size 180))
-  (t
-    (message "Config for unknown system type.")))
-
-;; font face attributes
-(set-face-attribute 'default nil
-                    :font "Iosevka Term SS03"
-                    :height cop/default-font-size
-                    :weight 'light)
-(set-face-attribute 'fixed-pitch nil
-                    :font "Iosevka Term SS03"
-                    :height cop/default-font-size
-                    :weight 'light)
-(set-face-attribute 'variable-pitch nil
-                    :font "Iosevka Term SS03"
-                    :height cop/default-variable-font-size
-                    :weight 'light)

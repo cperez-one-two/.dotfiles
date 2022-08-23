@@ -25,17 +25,22 @@
 
 ;; TODO :: make defmacro that can be used in the other modules instead of declaring them herer
 
+(defmacro cop-install-package-if-not-already (package)
+  "Only install the package if it is not already installed."
+  `(unless (package-installed-p ,package) (package-install ,package)))
+
 ;; declare all dependencies here.
 ;; I hate having to go around package-installing on all these machines
-(setq package-list
-      '(doom-themes org denote rainbow-delimiters))
-
-(package-initialize)
-
-(unless package-archive-contents
-  (package-refresh-contents))
+;;(setq package-list
+;;'(doom-themes org denote rainbow-delimiters))
+(defun cop-package-initialize ()
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents)))
 
 ;; Install missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+;;(dolist (package package-list)
+;;(unless (package-installed-p package)
+;;(package-install package)))
+
+(provide 'package-system)
