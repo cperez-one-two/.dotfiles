@@ -52,3 +52,5 @@
 ;; rainbow-delimiters - colors parens for visual aid
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+(provide 'look-and-feel)

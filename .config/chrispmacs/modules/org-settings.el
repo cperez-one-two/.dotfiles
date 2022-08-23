@@ -2,9 +2,8 @@
 
 ;; All my org settings. It can get quite long, so I gave it
 ;; it's own module.
-(require 'org)
- (setq org-agenda-files
-       '("~/Sync/Resources/denote/20220821T210952--next-actions__meta.org" "~/Sync/Resources/denote/20220822T110458--birthdays__meta.org"))
+(setq org-agenda-files
+      '("~/Sync/Resources/denote/20220821T210952--next-actions__meta.org" "~/Sync/Resources/denote/20220822T110458--reminders__meta.org"))
 (setq org-ellipsis " ▾"
       org-hide-emphasis-markers t)
 (setq org-agenda-start-with-log-mode t)
@@ -73,3 +72,5 @@
   (visual-line-mode 1))
 
 (add-hook 'org-mode-hook 'cop/org-mode-setup)
+
+(provide 'org-settings)

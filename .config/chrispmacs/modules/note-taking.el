@@ -3,11 +3,12 @@
 ;;; Configuration all revolving around taking notes
 
 ;;; Dependencies
+(require 'package-system)
 (cop-install-package-if-not-already 'denote)
 
 ;;; denote - a simlpe note-taking package
 (require 'denote)
-; config
+;; config
 (defun cop/denote-journal ()
   "Create an entry tagged 'journal' with the date as its title."
   (interactive)
@@ -47,3 +48,4 @@
 
 (add-hook 'dired-mode-hook #'denote-dired-mode)
 
+(provide 'note-taking)

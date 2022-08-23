@@ -1,4 +1,4 @@
-;;; emacs-settings.el -*- lexical-binding: t; -*-
+;;; defaults.el -*- lexical-binding: t; -*-
 
 ;; Default emacs settings
 ; no startup message
@@ -55,3 +55,5 @@
 (tab-bar-mode 1)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
+
+(provide 'defaults)
