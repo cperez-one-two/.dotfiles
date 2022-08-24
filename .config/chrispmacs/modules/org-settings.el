@@ -32,11 +32,11 @@
           (tags "+@computer"
                      ((org-agenda-overriding-header "@computer")
                       (org-agenda-max-todos nil)
-                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s")))
           (tags "+@home"
                      ((org-agenda-overriding-header "@home")
-                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s")))
           (tags "+@Calls"
                      ((org-agenda-overriding-header "@Calls")
@@ -47,19 +47,19 @@
           (tags "+@meetings"
                      ((org-agenda-overriding-header "@meeting-items")
                       (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s"))
                      (org-agenda-text-search-extra-files nil))
           (tags "+@errands"
                      ((org-agenda-overriding-header "@errands")
                       (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s"))
                      (org-agenda-text-search-extra-files nil))
           (tags "+@waiting"
                      ((org-agenda-overriding-header "@waiting-on")
                       (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-up))
+                      (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s"))
                      (org-agenda-text-search-extra-files nil))))))
 
