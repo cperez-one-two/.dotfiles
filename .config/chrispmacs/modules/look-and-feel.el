@@ -6,6 +6,8 @@
 (cop-install-package-if-not-already 'doom-themes)
 (cop-install-package-if-not-already 'doom-modeline)
 (cop-install-package-if-not-already 'rainbow-delimiters)
+(cop-install-package-if-not-already 'tree-sitter)
+(cop-install-package-if-not-already 'tree-sitter-langs)
 
 ;;; doom-themes
 (require 'doom-themes)
@@ -52,5 +54,10 @@
 ;; rainbow-delimiters - colors parens for visual aid
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; Tree-sitter: smarter, structured syntax highlighting
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(global-tree-sitter-mode)
 
 (provide 'look-and-feel)

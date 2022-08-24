@@ -4,6 +4,7 @@
 ;; it's own module.
 (setq org-agenda-files
       '("~/Sync/Resources/denote/20220821T210952--next-actions__meta.org" "~/Sync/Resources/denote/20220822T110458--reminders__meta.org"))
+(setq org-archive-location "~/Sync/Resources/denote/20220823T213739--completed-tasks__meta.org::")
 (setq org-ellipsis " ▾"
       org-hide-emphasis-markers t)
 (setq org-agenda-start-with-log-mode t)
