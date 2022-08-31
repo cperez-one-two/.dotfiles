@@ -1,0 +1,37 @@
+* ChrisPmacs
+
+An aggressively simple emacs configuration.
+
+** Installation
+
+This configuration exists within my ~.dotfiles~ repo. Clone this repo first. This repo /must/ be cloned to your ~$HOME~ directory, or it will not work.
+
+#+begin_src sh
+  cd ~
+  git clone https://github.com/cperez-one-two/.dotfiles.git
+#+end_src
+
+This repo depends on GNU [[https://www.gnu.org/software/stow/][stow]], which should be available in most package managers.
+
+From the root project directory, run ~stow~. This will symlink all the configurations to their proper location in your home directory.
+
+#+begin_src sh
+  cd .dotfiles
+  stow -R .
+#+end_src
+
+The emacs profile should now be available. To run, use the option ~--with-profile~.
+
+#+begin_src sh
+  emacs --with-profile chrispmacs
+#+end_src
+
+If you like this configuration enough to make it your default, set it as ~default~ in =.emacs-profiles.el=. This way, it will run as the default emacs profile whenever emacs is run.
+
+#+begin_src elisp
+  ("default"   . ((user-emacs-directory . "~/.config/chrispmacs"))
+#+end_src
+
+** Why?
+
+I wanted to create a portable and modular baseline configuration that has as little dependencies as possible. Everywhere that built-in functionality can be reasonably used without the need for a third-party package, I will try. And any package that provides some functionality will be preferably 100% Emacs lisp. Heavily inspired and copypasta'd from [[https://github.com/SystemCrafters/crafted-emacs][Crafted Emacs]].
