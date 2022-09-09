@@ -29,6 +29,7 @@
 (require 'org-settings)
 (require 'look-and-feel)
 (require 'note-taking)
+(require 'terminals)
 
 ;; TODO :: more modules (vcs, misc, eglot?)
 
