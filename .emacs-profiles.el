@@ -1,5 +1,5 @@
-(("default"   . ((user-emacs-directory . "~/.emacs.efs")))
+(("efs"   . ((user-emacs-directory . "~/.emacs.efs")))
  ("doom" . ((user-emacs-directory . "~/.emacs.doom")))
  (env . (("DOOMDIR" . "~/.config/doom")))
  ("cop" . ((user-emacs-directory . "~/.emacs.cop")))
- ("chrispmacs" . ((user-emacs-directory . "~/.config/chrispmacs"))))
+ ("default" . ((user-emacs-directory . "~/.config/chrispmacs"))))
