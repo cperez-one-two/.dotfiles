@@ -78,5 +78,8 @@ source $ZDOTDIR/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
 # zoxide :: zsh-z replacement
 eval "$(zoxide init zsh)"
 
+# rbenv : for ruby
+eval "$(rbenv init - zsh)"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"

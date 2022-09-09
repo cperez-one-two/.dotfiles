@@ -41,7 +41,7 @@ ctrl + alt + mod4 + f
 # mod4 + alt + {q,r}
 # 	bspc {quit,wm -r}
 
-# # close and kill
+# # close, kill
 # mod4 + {_,shift + }w
 # 	bspc node -{c,k}
 
