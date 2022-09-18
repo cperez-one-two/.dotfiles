@@ -24,31 +24,13 @@
 
 ;; Add the modules folder to the load path
 (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
+
 ;; modules to load
 (require 'defaults)
 (require 'org-settings)
 (require 'look-and-feel)
 (require 'note-taking)
 (require 'terminals)
+(require 'coding)
 
-;; TODO :: more modules (vcs, misc, eglot?)
-
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                vterm-mode-hook
-                shell-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-;; dired
-(require 'dired)
-; config
-(defun cop/dired-mode-setup ()
-  (dired-hide-details-mode 1)
-  (cond ((eq system-type 'darwin)
-         (setq dired-listing-switches "-ahlF"))
-        ((eq system-type 'gnu/linux)
-         (setq dired-listing-switches "-ahl --group-directories-first"))))
-
-(add-hook 'dired-mode-hook 'cop/dired-mode-setup)
+;; TODO :: LSP maybe? Completion menu, idk vertico?

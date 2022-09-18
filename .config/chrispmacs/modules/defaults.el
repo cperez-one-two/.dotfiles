@@ -33,6 +33,7 @@
 
 ;; line and character numbers
 (column-number-mode)
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 
 ;; Typed text replaces the selection if the selection is active,
@@ -55,5 +56,18 @@
 (tab-bar-mode 1)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
+
+;; dired
+(require 'dired)
+;;; config
+(defun cop/dired-mode-setup ()
+  (dired-hide-details-mode 1)
+  (cond ((eq system-type 'darwin)
+         (setq dired-listing-switches "-ahlF"))
+        ((eq system-type 'gnu/linux)
+         (setq dired-listing-switches "-lXGh --group-directories-first"))))
+
+(add-hook 'dired-mode-hook 'cop/dired-mode-setup)
+
 
 (provide 'defaults)

@@ -5,9 +5,6 @@
 (cop-install-package-if-not-already 'all-the-icons)
 (cop-install-package-if-not-already 'doom-themes)
 (cop-install-package-if-not-already 'doom-modeline)
-(cop-install-package-if-not-already 'rainbow-delimiters)
-(cop-install-package-if-not-already 'tree-sitter)
-(cop-install-package-if-not-already 'tree-sitter-langs)
 
 ;;; doom-themes
 (require 'doom-themes)
@@ -25,6 +22,14 @@
 (customize-set-variable 'doom-modeline-bar-width 6)
 (customize-set-variable 'doom-modeline-minor-modes t)
 (customize-set-variable 'doom-modeline-buffer-file-name-style 'truncate-except-project)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                vterm-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;; font settings
 (cond
@@ -50,14 +55,5 @@
                     :font "Iosevka Term SS03"
                     :height cop/default-variable-font-size
                     :weight 'light)
-
-;; rainbow-delimiters - colors parens for visual aid
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
-;; Tree-sitter: smarter, structured syntax highlighting
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-(global-tree-sitter-mode)
 
 (provide 'look-and-feel)
