@@ -65,7 +65,7 @@
   (cond ((eq system-type 'darwin)
          (setq dired-listing-switches "-ahlF"))
         ((eq system-type 'gnu/linux)
-         (setq dired-listing-switches "-lXGh --group-directories-first"))))
+         (setq dired-listing-switches "-lAh --group-directories-first"))))
 
 (add-hook 'dired-mode-hook 'cop/dired-mode-setup)
 
