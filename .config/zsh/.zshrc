@@ -68,7 +68,7 @@ _comp_options+=(globdots)               # Include hidden files.
 eval "$(fnm env --use-on-cd)"
 
 # direnv
-#eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 
 # Plugins
 # zsh-fast-syntax-highlighting
@@ -80,6 +80,9 @@ eval "$(zoxide init zsh)"
 
 # rbenv : for ruby
 eval "$(rbenv init - zsh)"
+
+# pyenv : for python
+eval "$(pyenv init -)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"
