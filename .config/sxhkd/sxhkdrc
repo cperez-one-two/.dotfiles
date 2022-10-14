@@ -33,6 +33,8 @@ ctrl + alt + mod4 + k
      keepassxc
 ctrl + alt + mod4 + f
      firefox
+ctrl + alt + mod4 + g
+     warpd --hint
 
 #
 # # bspwm
