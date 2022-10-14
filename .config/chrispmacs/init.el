@@ -32,5 +32,6 @@
 (require 'note-taking)
 (require 'terminals)
 (require 'coding)
+(require 'completion)
+; TODO :: completion
 
-;; TODO :: LSP maybe? Completion menu, idk vertico?
