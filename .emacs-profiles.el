@@ -2,4 +2,5 @@
  ("doom" . ((user-emacs-directory . "~/.emacs.doom")))
  (env . (("DOOMDIR" . "~/.config/doom")))
  ("cop" . ((user-emacs-directory . "~/.emacs.cop")))
+ ("test" . ((user-emacs-directory . "~/.config/bugmacs")))
  ("default" . ((user-emacs-directory . "~/.config/chrispmacs"))))

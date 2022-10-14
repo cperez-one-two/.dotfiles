@@ -76,3 +76,9 @@ flycheck_*.el
 !/.config/chrispmacs/early-init.el
 !/.config/chrispmacs/modules
 !/.config/chrispmacs/bootstrap
+
+# Emacs bugmacs
+/.config/bugmacs/*/
+/.config/bugmacs/*
+!/.config/bugmacs/init.el
+
