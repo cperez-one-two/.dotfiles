@@ -5,13 +5,18 @@
 (cop-install-package-if-not-already 'all-the-icons)
 (cop-install-package-if-not-already 'doom-themes)
 (cop-install-package-if-not-already 'doom-modeline)
+(cop-install-package-if-not-already 'autothemer)
 
 ;;; doom-themes
+;; Load custom theme path
+(add-to-list 'custom-theme-load-path "~/.config/chrispmacs/themes")
 (require 'doom-themes)
+(require 'autothemer)
 ;; config
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 (load-theme 'doom-tomorrow-night t)
+;(load-theme 'catppuccin-mocha t)
 
 ;;; modeline
 (require 'doom-modeline)
