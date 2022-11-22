@@ -6,13 +6,16 @@
 (cop-install-package-if-not-already 'savehist)
 (cop-install-package-if-not-already 'marginalia)
 (cop-install-package-if-not-already 'orderless)
+(cop-install-package-if-not-already 'corfu)
 
+;; Vertico: Minibuffer output of options
 (require 'vertico)
 (vertico-mode)
 (setq vertico-cycle t)
 
+;; Savehist: Saves minibuffer history
 (require 'savehist)
-(savehist-mode)
+(savehist-mode 1)
 
 (require 'marginalia)
 (with-eval-after-load 'vertico
@@ -26,5 +29,9 @@
 (require 'orderless)
 (setq completion-styles '(orderless basic)
       completion-category-overrides '((file (styles basic partial-completion))))
+
+(require 'corfu)
+(global-corfu-mode)
+(setq completion-cycle-threshold 3) 
 
 (provide 'completion)

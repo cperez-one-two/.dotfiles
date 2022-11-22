@@ -8,6 +8,7 @@
 (cop-install-package-if-not-already 'tree-sitter)
 (cop-install-package-if-not-already 'tree-sitter-langs)
 (cop-install-package-if-not-already 'rust-mode)
+(cop-install-package-if-not-already 'eglot)
 
 ;;; rainbow-delimiters - colors parens for visual aid
 (require 'rainbow-delimiters)
@@ -20,5 +21,10 @@
 
 ;;; Rust Lang
 (require 'rust-mode)
+
+;;; LSP
+(require 'eglot)
+(with-eval-after-load 'eglot
+  (add-hook 'rust-mode-hook 'eglot-ensure))
 
 (provide 'coding)
