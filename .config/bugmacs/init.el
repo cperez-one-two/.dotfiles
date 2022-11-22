@@ -11,14 +11,42 @@
   "Only install the package if it is not already installed."
   `(unless (package-installed-p ,package) (package-install ,package)))
 
-;;(load-theme 'modus-vivendi)
-
+(load-theme 'modus-vivendi t)
 (add-to-list 'custom-theme-load-path "~/.config/bugmacs/themes")
+
+;; Default emacs settings
+; no startup message
+(setq inhibit-startup-message t)
+
+; no scroll bar
+(scroll-bar-mode -1)
+
+; no tool bar at the top
+(tool-bar-mode -1)
+
+; no tooltip popup
+(tooltip-mode -1)
+
+; no menu bar
+(menu-bar-mode -1)
+
+; auto revert mode
+(global-auto-revert-mode 1)
+
+; tabs
+(tab-bar-mode 1)
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
+
+; disable manually customized variables from cluttering init file
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
+(load custom-file 'noerror 'nomessage)
 
 (bm-install-package-if-not-already 'consult)
 (bm-install-package-if-not-already 'vertico)
 (bm-install-package-if-not-already 'savehist)
 (bm-install-package-if-not-already 'marginalia)
+(bm-install-package-if-not-already 'orderless)
 ;;(bm-install-package-if-not-already 'autothemer)
 
 (require 'vertico)
@@ -35,20 +63,8 @@
 (require 'consult)
 (setq completion-styles '(substring basic))
 (global-set-key (kbd "C-s") 'consult-line)
+(global-set-key (kbd "C-M-y") 'consult-yank-from-kill-ring)
 
-;;(require 'autothemer)
-(load-theme 'catppuccin-mocha t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("2af6d337981b88f85980124e47e11cbff819200bba92648f59154a6ff35a7801" default))
- '(package-selected-packages '(marginalia vertico consult)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(require 'orderless)
+(setq completion-styles '(orderless basic)
+      completion-category-overrides '((file (styles basic partial-completion))))

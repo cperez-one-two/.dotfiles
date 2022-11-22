@@ -5,7 +5,7 @@
 (cop-install-package-if-not-already 'consult)
 (cop-install-package-if-not-already 'savehist)
 (cop-install-package-if-not-already 'marginalia)
-
+(cop-install-package-if-not-already 'orderless)
 
 (require 'vertico)
 (vertico-mode)
@@ -21,5 +21,10 @@
 (require 'consult)
 (setq completion-styles '(substring basic))
 (global-set-key (kbd "C-s") 'consult-line)
+(global-set-key (kbd "C-M-y") 'consult-yank-from-kill-ring)
+
+(require 'orderless)
+(setq completion-styles '(orderless basic)
+      completion-category-overrides '((file (styles basic partial-completion))))
 
 (provide 'completion)
