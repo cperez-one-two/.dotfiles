@@ -12,52 +12,58 @@
 (setq org-log-into-drawer t)
 (setq org-scheduled-past-days 5)
 (setq org-todo-keywords
-      '((sequence "NEXT(n)" "BACKLOG(b)" "|" "DONE(d!)")))
+      '((sequence "NEXT(n)" "WAITING(w)" "BACKLOG(b)" "|" "DONE(d!)")))
 
 (setq org-tag-alist
       '((:startgroup)
         (:endgroup)
-        ("@home" . ?h)
-        ("@computer" . ?c)
-        ("@errands" . ?e)
-        ("@Calls" . ?C)
-        ("@meetings" . ?m)
-        ("@waiting" . ?w)
-        ("@someday" . ?s)))
+        ("@email" . ?e)
+        ("@sre" . ?s)
+        ("@workflow" . ?w)
+        ("@dev" . ?d)
+        ("@messaging" . ?m)
+        ("@meetings" . ?M)
+        ("@someday" . ?S)))
 
 (setq org-agenda-custom-commands
       '(("n" "Next Actions"
          ((agenda "" ((org-deadline-warning-days 7)
                       (org-agenda-prefix-format "  %T %?-12t% s")))
-          (tags "+@computer"
-                     ((org-agenda-overriding-header "@computer")
-                      (org-agenda-max-todos nil)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      (org-agenda-prefix-format "  %?-12t% s")))
-          (tags "+@home"
-                     ((org-agenda-overriding-header "@home")
-                      (org-agenda-sorting-strategy '(priority-down))
-                      (org-agenda-prefix-format "  %?-12t% s")))
-          (tags "+@Calls"
-                     ((org-agenda-overriding-header "@Calls")
-                      (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      (org-agenda-prefix-format "  %?-12t% s"))
-                     (org-agenda-text-search-extra-files nil))
-          (tags "+@meetings"
-                     ((org-agenda-overriding-header "@meeting-items")
-                      (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      (org-agenda-prefix-format "  %?-12t% s"))
-                     (org-agenda-text-search-extra-files nil))
-          (tags "+@errands"
-                     ((org-agenda-overriding-header "@errands")
-                      (org-agenda-files org-agenda-files)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      (org-agenda-prefix-format "  %?-12t% s"))
-                     (org-agenda-text-search-extra-files nil))
-          (tags "+@waiting"
-                     ((org-agenda-overriding-header "@waiting-on")
+          (tags-todo "+TODO=\"NEXT\"+@sre"
+                ((org-agenda-overriding-header "@SRE")
+                 (org-agenda-max-todos nil)
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s")))
+          (tags-todo "+TODO=\"NEXT\"+@messaging"
+                ((org-agenda-overriding-header "@Messaging")
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s")))
+          (tags-todo "+TODO=\"NEXT\"+@meetings"
+                ((org-agenda-overriding-header "@Meeting")
+                 (org-agenda-files org-agenda-files)
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s"))
+                (org-agenda-text-search-extra-files nil))
+          (tags-todo "+TODO=\"NEXT\"+@email"
+                ((org-agenda-overriding-header "@Email")
+                 (org-agenda-files org-agenda-files)
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s"))
+                (org-agenda-text-search-extra-files nil))
+          (tags-todo "+TODO=\"NEXT\"+@dev"
+                ((org-agenda-overriding-header "@Dev")
+                 (org-agenda-files org-agenda-files)
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s"))
+                (org-agenda-text-search-extra-files nil))
+          (tags-todo "+TODO=\"NEXT\"+@workflow"
+                ((org-agenda-overriding-header "@Workflow")
+                 (org-agenda-files org-agenda-files)
+                 (org-agenda-sorting-strategy '(priority-down))
+                 (org-agenda-prefix-format "  %?-12t% s"))
+                (org-agenda-text-search-extra-files nil))
+          (tags-todo "+TODO=\"WAITING\""
+                     ((org-agenda-overriding-header "@Followup")
                       (org-agenda-files org-agenda-files)
                       (org-agenda-sorting-strategy '(priority-down))
                       (org-agenda-prefix-format "  %?-12t% s"))

@@ -31,7 +31,10 @@
       completion-category-overrides '((file (styles basic partial-completion))))
 
 (require 'corfu)
+(setq completion-cycle-threshold 3)
 (global-corfu-mode)
-(setq completion-cycle-threshold 3) 
+(with-eval-after-load 'corfu
+  (define-key corfu-map (kbd "<tab>") 'corfu-next)
+  (define-key corfu-map (kbd "<backtab>") 'corfu-previous))
 
 (provide 'completion)

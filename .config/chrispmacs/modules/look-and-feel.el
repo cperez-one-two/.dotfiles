@@ -34,7 +34,8 @@
                 term-mode-hook
                 vterm-mode-hook
                 shell-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                dired-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;; font settings
