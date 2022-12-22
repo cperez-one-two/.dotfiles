@@ -27,11 +27,12 @@
 
 ;; modules to load
 (require 'defaults)
+;(require 'os-specific)
 (require 'org-settings)
 (require 'look-and-feel)
 (require 'note-taking)
 (require 'terminals)
 (require 'coding)
 (require 'completion)
-; TODO :: completion
+(require 'text-editing-tools)
 
