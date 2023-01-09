@@ -27,7 +27,7 @@
 
 ;; modules to load
 (require 'defaults)
-;(require 'os-specific)
+(require 'os-specific)
 (require 'org-settings)
 (require 'look-and-feel)
 (require 'note-taking)

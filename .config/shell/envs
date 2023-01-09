@@ -1,17 +1,5 @@
 #!/bin/sh
-# Profile. Environment variables go here.
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-
-# PATH 
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
-export PATH="/home/uhoh/.local/bin/fnm:$PATH"
-export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# Environment variables go here.
 
 # TERM
 #export TERM="xterm-256color"
@@ -38,17 +26,21 @@ export PKG_CONFIG_PATH="/usr/local/opt/postgresql@13/lib/pkgconfig"
 export CWMRC="${XDG_CONFIG_HOME:-$HOME/.config}/cwm/.cwmrc"
 
 # Defaults
-export EDITOR="nvim"
-if [ $(hostname) = "meep" ]; then
-    export TERMINAL="termite"
-else
-    export TERMINAL="alacritty"
-fi
+export EDITOR="emacs"
+#if [ $USER = "meep" ]; then
+#    export TERMINAL="termite"
+#else
+#    export TERMINAL="alacritty"
+#fi
 export BROWSER="brave"
 export SCROTS="$HOME/pics/scrots"
 
 # Qt applications styling
 export QT_STYLE_OVERRIDE=kvantum
 
-# Source nix profile
-[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
+## PATH and all the other env crap that gets initialized
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+
+# PATH 
+export PATH="/bin:/sbin:/usr/local/sbin/:/usr/local/bin:/usr/bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.local/bin/fnm:/usr/local/opt/postgresql@13/bin:$HOME/.rbenv/bin:$HOME/.cargo/bin:$PYENV_ROOT/bin"

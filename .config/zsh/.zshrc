@@ -42,6 +42,32 @@ autoload -U compinit; compinit
 _comp_options+=(globdots)               # Include hidden files.
 #fpath+=~/.config/zsh/completions/_fnm   # fnm completions
 
+# Plugins
+# zsh-fast-syntax-highlighting
+source $ZDOTDIR/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
+# zsh-z :: Fast cd'ing into folders
+#source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
+
+# zoxide :: zsh-z replacement
+eval "$(zoxide init zsh)"
+
+# fnm
+eval "$(fnm env --use-on-cd --shell=zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# rbenv : for ruby
+eval "$(rbenv init - zsh)"
+
+# pyenv : for python
+eval "$(pyenv init -)"
+
+# Source nix profile
+[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"
 
 # Keybinds
 #bindkey '^[[P' delete-char                      # Delete key fix
@@ -63,26 +89,3 @@ _comp_options+=(globdots)               # Include hidden files.
 #zle -N zle-line-init
 #echo -ne '\e[1 q'                       # Use beam shape cursor on startup.
 #preexec() { echo -ne '\e[3 q' ;}        # Use beam shape cursor for each new prompt.
-
-# fnm
-eval "$(fnm env --use-on-cd)"
-
-# direnv
-eval "$(direnv hook zsh)"
-
-# Plugins
-# zsh-fast-syntax-highlighting
-source $ZDOTDIR/plugins/fast-syntax-highlighting/F-Sy-H.plugin.zsh
-# zsh-z :: Fast cd'ing into folders
-#source $ZDOTDIR/plugins/zsh-z/zsh-z.plugin.zsh
-# zoxide :: zsh-z replacement
-eval "$(zoxide init zsh)"
-
-# rbenv : for ruby
-eval "$(rbenv init - zsh)"
-
-# pyenv : for python
-eval "$(pyenv init -)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "/home/uhoh/.local/sdkman/bin/sdkman-init.sh" ]] && source "/home/uhoh/.local/sdkman/bin/sdkman-init.sh"

@@ -2,4 +2,4 @@
 # .zshenv: sources shell-agnostic profile for zsh
 #
 
-[ -f ~/.config/shell/profile ] && . ~/.config/shell/profile
+[ -f ~/.config/shell/envs ] && . ~/.config/shell/envs
